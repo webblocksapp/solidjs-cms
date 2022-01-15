@@ -6,20 +6,19 @@
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview",
-    "storybook": "start-storybook"
+    "serve": "vite preview"
   },
   "license": "MIT",
   "devDependencies": {
-    "@storybook/addon-controls": "^6.4.13",
-    "storybook-solid": "^0.0.1-beta02",
     "typescript": "^4.5.4",
     "vite": "^2.7.10",
-    "vite-plugin-solid": "^2.2.1"
+    "vite-plugin-solid": "^2.2.1",
+    "vite-tsconfig-paths": "^3.3.17"
   },
   "dependencies": {
     "bootstrap": "^5.1.3",
     "csstype": "^3.0.10",
+    "solid-app-router": "^0.2.1",
     "solid-js": "^1.3.2"
   }
 }
