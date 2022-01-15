@@ -12,7 +12,7 @@
     "types": ["vite/client"],
     "paths": {
       "@app-types": ["app-types"],
-      "@components": ["components/*"],
+      "@components": ["components"],
       "@modules/*": ["modules/*"],
       "@routes": ["routes"]
     }
