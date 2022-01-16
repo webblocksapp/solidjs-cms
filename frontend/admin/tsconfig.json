@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
     "strict": true,
     "target": "ESNext",
     "module": "ESNext",
@@ -9,12 +8,6 @@
     "esModuleInterop": true,
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
-    "types": ["vite/client"],
-    "paths": {
-      "@app-types": ["app-types"],
-      "@components": ["components"],
-      "@modules/*": ["modules/*"],
-      "@routes": ["routes"]
-    }
+    "types": ["vite/client"]
   }
 }
