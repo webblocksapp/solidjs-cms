@@ -1,10 +1,10 @@
 import { Component } from 'solid-js';
-import { Basic } from './Box/basic';
+import { Basic as GridBasic } from './Grid/basic';
 
 export const DesignSystem: Component = () => {
   return (
     <>
-      <Basic />
+      <GridBasic />
     </>
   );
 };

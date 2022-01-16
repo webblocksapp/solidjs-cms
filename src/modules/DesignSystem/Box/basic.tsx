@@ -1,4 +1,4 @@
-import { Component, createEffect, createSignal } from 'solid-js';
+import { Component, createSignal } from 'solid-js';
 import { Box, BoxProps } from '@components';
 
 export const Basic: Component = () => {
