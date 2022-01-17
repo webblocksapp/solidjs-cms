@@ -6,7 +6,8 @@
   ],
   "scripts": {
     "start": "lerna run --parallel start",
-    "build": "lerna run build"
+    "build": "lerna run build",
+    "serve": "lerna run --parallel serve"
   },
   "devDependencies": {
     "lerna": "^4.0.0"
