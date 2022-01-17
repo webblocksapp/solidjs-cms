@@ -11,7 +11,7 @@
     "jsxImportSource": "solid-js",
     "types": ["vite/client"],
     "paths": {
-      "@types": ["types"],
+      "@app-types": ["app-types"],
       "@components": ["components"],
       "@modules/*": ["modules/*"],
       "@routes": ["routes"]

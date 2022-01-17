@@ -1,6 +1,9 @@
 {
   "name": "solidjs-cms",
   "private": true,
+  "workspaces": [
+    "frontend/*"
+  ],
   "scripts": {
     "start": "lerna run --parallel start",
     "build": "lerna run build"
