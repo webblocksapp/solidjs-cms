@@ -1,3 +1,3 @@
-import * as CSS from 'csstype';
+import { Properties } from 'csstype';
 
-export type Display = CSS.Properties['display'];
+export type Display = Properties['display'];
