@@ -1,11 +1,11 @@
 import { Component, createEffect, createSignal } from 'solid-js';
-import { Spacing, ColSize } from '@app-types';
+import { SpacingScale, ColSize } from '@app-types';
 
 export interface GridProps {
   container?: boolean;
-  spacing?: Spacing;
-  rowSpacing?: Spacing;
-  columnSpacing?: Spacing;
+  spacing?: SpacingScale;
+  rowSpacing?: SpacingScale;
+  columnSpacing?: SpacingScale;
   item?: boolean;
   xs?: ColSize;
   sm?: ColSize;
@@ -33,17 +33,17 @@ export const Grid: Component<GridProps> = (props) => {
   };
 
   //Implements the gutters class which adds spacing at x and y.
-  const computeSpacingClass = (spacing?: Spacing) => {
+  const computeSpacingClass = (spacing?: SpacingScale) => {
     setSpacingClass(() => (spacing ? ` g-${spacing} ` : ''));
   };
 
   //Implements the gutters class which adds spacing at y (Between rows).
-  const computeRowSpacingClass = (spacing?: Spacing) => {
+  const computeRowSpacingClass = (spacing?: SpacingScale) => {
     setRowSpacingClass(() => (spacing ? ` gy-${spacing} ` : ''));
   };
 
   //Implements the gutters class which adds spacing at x (Between cols).
-  const computeColumnSpacingClass = (spacing?: Spacing) => {
+  const computeColumnSpacingClass = (spacing?: SpacingScale) => {
     setColumnSpacingClass(() => (spacing ? ` gx-${spacing} ` : ''));
   };
 
