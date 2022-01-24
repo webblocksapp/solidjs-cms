@@ -11,7 +11,8 @@
     "jsxImportSource": "solid-js",
     "types": ["vite/client"],
     "paths": {
-      "@shared/*": ["../../node_modules/shared/src/*"]
+      "@components": ["../../node_modules/frontend-shared/src/components"],
+      "@app-types": ["../../node_modules/frontend-shared/src/app-types"]
     }
   }
 }

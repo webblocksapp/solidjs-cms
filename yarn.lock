@@ -1384,6 +1384,11 @@ before-after-hook@^2.2.0:
   resolved "https://registry.yarnpkg.com/before-after-hook/-/before-after-hook-2.2.2.tgz#a6e8ca41028d90ee2c24222f201c90956091613e"
   integrity sha512-3pZEU3NT5BFUo/AD5ERPWOgQOCZITni6iavr5AUw5AUwQjMlI0kzu5btnyD39AF0gUEsDPwJT+oY1ORBJijPjQ==
 
+bintrees@~0.0.7:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/bintrees/-/bintrees-0.0.10.tgz#95496cf4b6ebcd04428656310197cea86bf5e94b"
+  integrity sha1-lUls9LbrzQRChlYxAZfOqGv16Us=
+
 bootstrap@^5.1.3:
   version "5.1.3"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.1.3.tgz#ba081b0c130f810fa70900acbc1c6d3c28fa8f34"
@@ -1414,6 +1419,16 @@ browserslist@^4.17.5:
     escalade "^3.1.1"
     node-releases "^2.0.1"
     picocolors "^1.0.0"
+
+bson@0.1.8:
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/bson/-/bson-0.1.8.tgz#cf34fdcff081a189b589b4b3e5e9309cd6506c81"
+  integrity sha1-zzT9z/CBoYm1ibSz5ekwnNZQbIE=
+
+bson@~0.1.5:
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/bson/-/bson-0.1.9.tgz#7528f81ed770e6d630ca8c2ccdf5394a4096db14"
+  integrity sha1-dSj4Htdw5tYwyowszfU5SkCW2xQ=
 
 buffer-from@^1.0.0:
   version "1.1.2"
@@ -3355,6 +3370,13 @@ modify-values@^1.0.0:
   resolved "https://registry.yarnpkg.com/modify-values/-/modify-values-1.0.1.tgz#b3939fa605546474e3e3e3c63d64bd43b4ee6022"
   integrity sha512-xV2bxeN6F7oYjZWTe/YPAy6MN2M+sL4u/Rlm2AHCIVGfo2p1yGmBHQ6vHehl4bRTZBdHu3TSkWdYgkwpYzAGSw==
 
+mongodb@~1.2.9:
+  version "1.2.14"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-1.2.14.tgz#269665552066437308d0942036646e6795c3a9a3"
+  integrity sha1-JpZlVSBmQ3MI0JQgNmRuZ5XDqaM=
+  dependencies:
+    bson "0.1.8"
+
 ms@2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
@@ -3440,6 +3462,11 @@ node-releases@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.1.tgz#3d1d395f204f1f2f29a54358b9fb678765ad2fc5"
   integrity sha512-CqyzN6z7Q6aMeF/ktcMVTzhAHCEpf8SOarwpzpf8pNBY2k5/oM34UHldUwp8VKI7uxct2HxSRdJjBaZeESzcxA==
+
+node-uuid@~1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/node-uuid/-/node-uuid-1.3.3.tgz#d3db4d7b56810d9e4032342766282af07391729b"
+  integrity sha1-09tNe1aBDZ5AMjQnZigq8HORcps=
 
 nopt@^4.0.1:
   version "4.0.3"
@@ -4293,6 +4320,17 @@ shallow-clone@^3.0.0:
   dependencies:
     kind-of "^6.0.2"
 
+shared@*:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/shared/-/shared-0.2.0.tgz#b6d359a782cb6d20d097da957e92c8168c93eea2"
+  integrity sha1-ttNZp4LLbSDQl9qVfpLIFoyT7qI=
+  dependencies:
+    bintrees "~0.0.7"
+    bson "~0.1.5"
+    mongodb "~1.2.9"
+    node-uuid "~1.3.3"
+    underscore "~1.4.0"
+
 shebang-command@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/shebang-command/-/shebang-command-2.0.0.tgz#ccd0af4f8835fbdc265b82461aaf0c36663f34ea"
@@ -4800,6 +4838,11 @@ unbox-primitive@^1.0.1:
     has-bigints "^1.0.1"
     has-symbols "^1.0.2"
     which-boxed-primitive "^1.0.2"
+
+underscore@~1.4.0:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.4.4.tgz#61a6a32010622afa07963bf325203cf12239d604"
+  integrity sha1-YaajIBBiKvoHljvzJSA88SI51gQ=
 
 unique-filename@^1.1.1:
   version "1.1.1"
