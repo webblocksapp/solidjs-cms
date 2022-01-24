@@ -2,7 +2,7 @@ import { Component, createEffect, createSignal } from 'solid-js';
 import { FlexboxProps } from '@app-types';
 import { Properties } from 'csstype';
 
-export const withFlex = <T extends { class?: Properties['flexDirection'] }>(BaseComponent: Component<T>) => {
+export const withFlex = <T extends { class?: string }>(BaseComponent: Component<T>) => {
   return (props: T & FlexboxProps) => {
     const [flexDirectionClass, setFlexDirectionClass] = createSignal<string>('');
     const [flexWrapClass, setFlexWrapClass] = createSignal<string>('');
