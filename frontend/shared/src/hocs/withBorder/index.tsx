@@ -4,9 +4,7 @@ import { BorderProps, BorderScale, OneZero } from '@app-types';
 /**
  * HoC which adds border props.
  */
-export const withBorder = <T extends { class?: string }>(
-  BaseComponent: Component<T>
-) => {
+export const withBorder = <T extends { class?: string }>(BaseComponent: Component<T>) => {
   return (props: T & BorderProps) => {
     const [borderWidthClass, setBorderScaleClass] = createSignal<string>('');
     const [borderClass, setBorderClass] = createSignal<string>('');
@@ -45,9 +43,7 @@ export const withBorder = <T extends { class?: string }>(
      * @param {OneZero} flag
      */
     const computeBorderRightClass = (flag?: OneZero) => {
-      setBorderRightClass(() =>
-        props.borderRight ? ` border-end-${flag} ` : ''
-      );
+      setBorderRightClass(() => (props.borderRight ? ` border-end-${flag} ` : ''));
     };
 
     /**
@@ -55,19 +51,15 @@ export const withBorder = <T extends { class?: string }>(
      * @param {OneZero} flag
      */
     const computeBorderBottomClass = (flag?: OneZero) => {
-      setBorderBottomClass(() =>
-        props.borderBottom ? ` border-bottom-${flag} ` : ''
-      );
+      setBorderBottomClass(() => (props.borderBottom ? ` border-bottom-${flag} ` : ''));
     };
 
     /**
      * Computes the bootstrap border left class
-     * @param flag
+     * @param {OneZero} flag
      */
     const computeBorderLeftClass = (flag?: OneZero) => {
-      setBorderLeftClass(() =>
-        props.borderLeft ? ` border-start-${flag} ` : ''
-      );
+      setBorderLeftClass(() => (props.borderLeft ? ` border-start-${flag} ` : ''));
     };
 
     createEffect(() => computeBorderClass(props.border));

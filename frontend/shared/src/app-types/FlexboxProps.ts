@@ -7,7 +7,6 @@ export interface FlexboxProps {
   alignItems?: Properties['alignItems'];
   alignContent?: Properties['alignContent'];
   order?: Properties['order'];
-  flex?: Properties['flex'];
   flexGrow?: Properties['flexGrow'];
   flexShrink?: Properties['flexShrink'];
   alignSelf?: Properties['alignSelf'];
