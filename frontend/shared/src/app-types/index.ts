@@ -11,6 +11,7 @@ export * from './OneZero';
 export * from './PaletteColor';
 export * from './PaletteProps';
 export * from './Position';
+export * from './PositionScale';
 export * from './PositionsProps';
 export * from './ShadowsProps';
 export * from './SizingProps';

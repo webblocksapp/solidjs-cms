@@ -1,8 +1,8 @@
 import { Component } from 'solid-js';
-import { BorderProps, Display, DisplayProps, DivElement, FlexboxProps, PaletteProps } from '@app-types';
-import { withBorder, withDisplay, withPalette, withFlex } from '@hocs';
+import { BorderProps, Display, DisplayProps, DivElement, FlexboxProps, PaletteProps, PositionsProps } from '@app-types';
+import { withBorder, withDisplay, withPalette, withFlex, withPosition } from '@hocs';
 
-export interface BoxProps extends FlexboxProps, DisplayProps, BorderProps, PaletteProps, DivElement {
+export interface BoxProps extends PositionsProps, FlexboxProps, DisplayProps, BorderProps, PaletteProps, DivElement {
   display?: Display;
 }
 
@@ -14,5 +14,6 @@ Box = withBorder(Box);
 Box = withPalette(Box);
 Box = withDisplay(Box);
 Box = withFlex(Box);
+Box = withPosition(Box);
 
 export { Box };

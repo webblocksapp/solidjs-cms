@@ -1,10 +1,11 @@
 import { Properties } from 'csstype';
+import { PositionScale } from '@app-types';
 
 export interface PositionsProps {
   position?: Properties['position'];
   zIndex?: Properties['zIndex'];
-  top?: Properties['top'];
-  right?: Properties['right'];
-  bottom?: Properties['bottom'];
-  left?: Properties['left'];
+  top?: PositionScale;
+  right?: PositionScale;
+  bottom?: PositionScale;
+  left?: PositionScale;
 }
