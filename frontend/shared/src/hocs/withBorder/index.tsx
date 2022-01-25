@@ -1,4 +1,4 @@
-import { Component, createSignal, createEffect } from 'solid-js';
+import { Component, createSignal, createEffect, mergeProps } from 'solid-js';
 import { BorderProps, BorderScale, OneZero } from '@app-types';
 
 /**
@@ -12,6 +12,7 @@ export const withBorder = <T extends { class?: string }>(BaseComponent: Componen
     const [borderRightClass, setBorderRightClass] = createSignal<string>('');
     const [borderBottomClass, setBorderBottomClass] = createSignal<string>('');
     const [borderLeftClass, setBorderLeftClass] = createSignal<string>('');
+    props = mergeProps({ class: '' }, props);
 
     /**
      * Computes the bootstrap border width

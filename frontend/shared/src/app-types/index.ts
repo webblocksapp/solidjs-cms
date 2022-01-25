@@ -2,7 +2,7 @@
 export * from './BorderProps';
 export * from './BorderScale';
 export * from './ColSize';
-export * from './Display';
+export * from './CommonObject';
 export * from './DisplayProps';
 export * from './DivElement';
 export * from './FlexboxProps';
@@ -15,6 +15,8 @@ export * from './PositionScale';
 export * from './PositionsProps';
 export * from './ShadowsProps';
 export * from './SizingProps';
+export * from './SizingScale';
 export * from './SpacingProps';
 export * from './SpacingScale';
+export * from './Style';
 export * from './TypographyProps';

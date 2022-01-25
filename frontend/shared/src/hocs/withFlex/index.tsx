@@ -1,6 +1,5 @@
-import { Component, createEffect, createSignal } from 'solid-js';
+import { Component, createEffect, createSignal, mergeProps } from 'solid-js';
 import { FlexboxProps } from '@app-types';
-import { Properties } from 'csstype';
 
 export const withFlex = <T extends { class?: string }>(BaseComponent: Component<T>) => {
   return (props: T & FlexboxProps) => {
@@ -13,12 +12,13 @@ export const withFlex = <T extends { class?: string }>(BaseComponent: Component<
     const [flexGrowClass, setFlexGrowClass] = createSignal<string>('');
     const [flexShrinkClass, setFlexShrinkClass] = createSignal<string>('');
     const [alignSelfClass, setAlignSelfClass] = createSignal<string>('');
+    props = mergeProps({ class: '' }, props);
 
     /**
      * Computes the flex direction class with the given css rule value.
      * @param flexDirection
      */
-    const computeFlexDirectionClass = (flexDirection?: Properties['flexDirection']) => {
+    const computeFlexDirectionClass = (flexDirection?: FlexboxProps['flexDirection']) => {
       setFlexDirectionClass(() => (flexDirection ? ` flex-${flexDirection} ` : ''));
     };
 
@@ -26,7 +26,7 @@ export const withFlex = <T extends { class?: string }>(BaseComponent: Component<
      * Computes the flex wrap class with the given css rule value.
      * @param flexWrap
      */
-    const computeFlexWrapClass = (flexWrap?: Properties['flexWrap']) => {
+    const computeFlexWrapClass = (flexWrap?: FlexboxProps['flexWrap']) => {
       setFlexWrapClass(() => (flexWrap ? ` flex-${flexWrap} ` : ''));
     };
 
@@ -34,7 +34,7 @@ export const withFlex = <T extends { class?: string }>(BaseComponent: Component<
      * Computes the justify content class with the given css rule value.
      * @param justifyContent
      */
-    const computeJustifyContentClass = (justifyContent?: Properties['justifyContent']) => {
+    const computeJustifyContentClass = (justifyContent?: FlexboxProps['justifyContent']) => {
       setJustifyContentClass(() => (justifyContent ? ` justify-content-${justifyContent} ` : ''));
     };
 
@@ -42,7 +42,7 @@ export const withFlex = <T extends { class?: string }>(BaseComponent: Component<
      * Computes the align items class with the given css rule value.
      * @param alignItems
      */
-    const computeAlignItemsClass = (alignItems?: Properties['alignItems']) => {
+    const computeAlignItemsClass = (alignItems?: FlexboxProps['alignItems']) => {
       setAlignItemsClass(() => (alignItems ? ` align-items-${alignItems} ` : ''));
     };
 
@@ -50,7 +50,7 @@ export const withFlex = <T extends { class?: string }>(BaseComponent: Component<
      * Computes the align content class with the given css rule value.
      * @param alignContent
      */
-    const computeAlignContentClass = (alignContent?: Properties['alignContent']) => {
+    const computeAlignContentClass = (alignContent?: FlexboxProps['alignContent']) => {
       setAlignContentClass(() => (alignContent ? ` align-content-${alignContent} ` : ''));
     };
 
@@ -58,7 +58,7 @@ export const withFlex = <T extends { class?: string }>(BaseComponent: Component<
      * Computes the flex order class with the given css rule value.
      * @param order
      */
-    const computeOrderClass = (order?: Properties['order']) => {
+    const computeOrderClass = (order?: FlexboxProps['order']) => {
       setOrderClass(() => (order ? ` order-${order} ` : ''));
     };
 
@@ -66,7 +66,7 @@ export const withFlex = <T extends { class?: string }>(BaseComponent: Component<
      * Computes the flex grow class with the given css rule value.
      * @param flexGrow
      */
-    const computeFlexGrowClass = (flexGrow?: Properties['flexGrow']) => {
+    const computeFlexGrowClass = (flexGrow?: FlexboxProps['flexGrow']) => {
       setFlexGrowClass(() => (flexGrow ? ` flex-grow-${flexGrow} ` : ''));
     };
 
@@ -74,7 +74,7 @@ export const withFlex = <T extends { class?: string }>(BaseComponent: Component<
      * Computes the flex shrink class with the given css rule value.
      * @param flexShrink
      */
-    const computeFlexShrinkClass = (flexShrink?: Properties['flexShrink']) => {
+    const computeFlexShrinkClass = (flexShrink?: FlexboxProps['flexShrink']) => {
       setFlexShrinkClass(() => (flexShrink ? ` flex-shrink-${flexShrink} ` : ''));
     };
 
@@ -82,7 +82,7 @@ export const withFlex = <T extends { class?: string }>(BaseComponent: Component<
      * Computes the align self class with the given css rule value.
      * @param alignSelf
      */
-    const computeAlignSelfClass = (alignSelf?: Properties['alignSelf']) => {
+    const computeAlignSelfClass = (alignSelf?: FlexboxProps['alignSelf']) => {
       setAlignSelfClass(() => (alignSelf ? ` align-self-${alignSelf} ` : ''));
     };
 

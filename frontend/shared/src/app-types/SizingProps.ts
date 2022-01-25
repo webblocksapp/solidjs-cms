@@ -1,7 +1,6 @@
 import { Properties } from 'csstype';
-
 export interface SizingProps {
-  width?: Properties['width'];
+  width?: Properties['width'] | number;
   maxWidth?: Properties['maxWidth'];
   minWidth?: Properties['minWidth'];
   height?: Properties['height'];

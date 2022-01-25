@@ -4,3 +4,5 @@ export * from './withDisplay';
 export * from './withFlex';
 export * from './withPalette';
 export * from './withPosition';
+export * from './withShadow';
+export * from './withSizing';

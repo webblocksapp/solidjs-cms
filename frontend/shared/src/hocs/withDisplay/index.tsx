@@ -1,15 +1,16 @@
-import { Component, createSignal, createEffect } from 'solid-js';
-import { Display, DisplayProps } from '@app-types';
+import { Component, createSignal, createEffect, mergeProps } from 'solid-js';
+import { DisplayProps } from '@app-types';
 
 export const withDisplay = <T extends { class?: string }>(BaseComponent: Component<T>) => {
   return (props: T & DisplayProps) => {
     const [displayClass, setDisplayClass] = createSignal<string>('d-block');
+    props = mergeProps({ class: '' }, props);
 
     /**
      * Computes the bootstrap display class with the given css rule display
      * @param {Display} display
      */
-    const computeDisplayClass = (display?: Display) => {
+    const computeDisplayClass = (display?: DisplayProps['display']) => {
       setDisplayClass(() => (display ? ` d-${display} ` : ' d-block '));
     };
 

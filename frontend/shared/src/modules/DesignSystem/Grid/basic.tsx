@@ -8,7 +8,9 @@ export const Basic: Component = () => {
         <Grid item xs={12} md={6}>
           <Grid container spacing={2}>
             <Grid item xs={6}>
-              <Box border={1}>A-1</Box>
+              <Box zIndex={2} border={1} width={'30%'}>
+                A-1
+              </Box>
             </Grid>
             <Grid item xs={6}>
               <Box border={1}>A-2</Box>

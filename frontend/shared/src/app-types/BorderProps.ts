@@ -1,4 +1,3 @@
-import { Properties } from 'csstype';
 import { BorderScale, OneZero } from '@app-types';
 
 export interface BorderProps {

@@ -15,7 +15,8 @@
       "@components": ["components"],
       "@hocs": ["hocs"],
       "@modules/*": ["modules/*"],
-      "@routes": ["routes"]
+      "@routes": ["routes"],
+      "@utils": ["utils"]
     }
   }
 }

@@ -1,10 +1,15 @@
-import { Component, createEffect, createSignal } from 'solid-js';
+import { Component, createEffect, createSignal, mergeProps } from 'solid-js';
 import { ShadowsProps } from '@app-types';
 
 export const withShadow = <T extends { class?: string }>(BaseComponent: Component<T>) => {
   return (props: T & ShadowsProps) => {
     const [boxShadowClass, setBoxShadowClass] = createSignal<string>('');
+    props = mergeProps({ class: '' }, props);
 
+    /**
+     * Computes the shadow class with the given shadow scale value.
+     * @param scale
+     */
     const computeBoxShadowClass = (scale: ShadowsProps['boxShadow']) => {
       setBoxShadowClass(() => {
         switch (scale) {
