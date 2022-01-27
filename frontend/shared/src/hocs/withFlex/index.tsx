@@ -14,74 +14,38 @@ export const withFlex = <T extends { class?: string }>(BaseComponent: Component<
     const [alignSelfClass, setAlignSelfClass] = createSignal<string>('');
     props = mergeProps({ class: '' }, props);
 
-    /**
-     * Computes the flex direction class with the given css rule value.
-     * @param flexDirection
-     */
     const computeFlexDirectionClass = (flexDirection?: FlexboxProps['flexDirection']) => {
       setFlexDirectionClass(() => (flexDirection ? ` flex-${flexDirection} ` : ''));
     };
 
-    /**
-     * Computes the flex wrap class with the given css rule value.
-     * @param flexWrap
-     */
     const computeFlexWrapClass = (flexWrap?: FlexboxProps['flexWrap']) => {
       setFlexWrapClass(() => (flexWrap ? ` flex-${flexWrap} ` : ''));
     };
 
-    /**
-     * Computes the justify content class with the given css rule value.
-     * @param justifyContent
-     */
     const computeJustifyContentClass = (justifyContent?: FlexboxProps['justifyContent']) => {
       setJustifyContentClass(() => (justifyContent ? ` justify-content-${justifyContent} ` : ''));
     };
 
-    /**
-     * Computes the align items class with the given css rule value.
-     * @param alignItems
-     */
     const computeAlignItemsClass = (alignItems?: FlexboxProps['alignItems']) => {
       setAlignItemsClass(() => (alignItems ? ` align-items-${alignItems} ` : ''));
     };
 
-    /**
-     * Computes the align content class with the given css rule value.
-     * @param alignContent
-     */
     const computeAlignContentClass = (alignContent?: FlexboxProps['alignContent']) => {
       setAlignContentClass(() => (alignContent ? ` align-content-${alignContent} ` : ''));
     };
 
-    /**
-     * Computes the flex order class with the given css rule value.
-     * @param order
-     */
     const computeOrderClass = (order?: FlexboxProps['order']) => {
       setOrderClass(() => (order ? ` order-${order} ` : ''));
     };
 
-    /**
-     * Computes the flex grow class with the given css rule value.
-     * @param flexGrow
-     */
     const computeFlexGrowClass = (flexGrow?: FlexboxProps['flexGrow']) => {
       setFlexGrowClass(() => (flexGrow ? ` flex-grow-${flexGrow} ` : ''));
     };
 
-    /**
-     * Computes the flex shrink class with the given css rule value.
-     * @param flexShrink
-     */
     const computeFlexShrinkClass = (flexShrink?: FlexboxProps['flexShrink']) => {
       setFlexShrinkClass(() => (flexShrink ? ` flex-shrink-${flexShrink} ` : ''));
     };
 
-    /**
-     * Computes the align self class with the given css rule value.
-     * @param alignSelf
-     */
     const computeAlignSelfClass = (alignSelf?: FlexboxProps['alignSelf']) => {
       setAlignSelfClass(() => (alignSelf ? ` align-self-${alignSelf} ` : ''));
     };

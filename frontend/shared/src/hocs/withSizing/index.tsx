@@ -8,21 +8,20 @@ export const withSizing = <T extends { class?: string; style?: Style }>(BaseComp
     const { style, mergeStyle } = useMergeStyle();
     props = mergeProps({ class: '' }, props);
 
-    /**
-     * Computes the sizing class with the given sizing scale value.
-     * @param scale
-     */
-    const computeWidthClass = (scale?: SizingProps['width']) => {
+    const computeWidth = (width?: SizingProps['width']) => {
       let className: string = '';
-      if (typeof scale === 'string' && isBs5Size(scale)) {
-        className = ` w-${scale.replace('%', '')} `;
+
+      if (width === undefined) {
+        return;
+      } else if (typeof width === 'string' && isBs5Size(width)) {
+        className = ` w-${width.replace('%', '')} `;
       } else {
-        mergeStyle(props.style, { width: parseSize(props?.width) });
+        mergeStyle(props.style, { width: parseSize(width) });
       }
       setWidthClass(className);
     };
 
-    createEffect(() => computeWidthClass(props.width));
+    createEffect(() => computeWidth(props.width));
 
     return <BaseComponent {...props} class={props.class + widthClass()} style={style()} />;
   };

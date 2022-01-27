@@ -9,6 +9,12 @@ export const Basic: Component = () => {
     setArgs({ ...args(), [name]: value });
   };
 
+  const handleStyleChange = (event: Event) => {
+    const { name, value } = event.target as HTMLInputElement;
+    const styles = [{ background: 'blue' }, { background: 'green' }];
+    setArgs({ ...args(), [name]: value ? styles[Number(value)] : {} });
+  };
+
   return (
     <div class="p-3">
       <Box {...args()}>
@@ -62,6 +68,48 @@ export const Basic: Component = () => {
         <option value="">Border left</option>
         <option>0</option>
         <option>1</option>
+      </select>
+
+      <select name="style" onChange={(event) => handleStyleChange(event)}>
+        <option value="">Select a style</option>
+        <option value={0}>Style 1</option>
+        <option value={1}>Style 2</option>
+      </select>
+
+      <select name="zIndex" onChange={(event) => handleChange(event)}>
+        <option value="">Select a zIndex</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+      </select>
+
+      <select name="width" onChange={(event) => handleChange(event)}>
+        <option value="">Select a width</option>
+        <option>100</option>
+        <option>200</option>
+        <option>300</option>
+        <option>400</option>
+        <option>25%</option>
+        <option>50%</option>
+        <option>75%</option>
+        <option>100%</option>
+        <option>30%</option>
+        <option>40%</option>
+      </select>
+
+      <select name="position" onChange={(event) => handleChange(event)}>
+        <option value="">Select a position</option>
+        <option>absolute</option>
+        <option>relative</option>
+      </select>
+
+      <select name="padding" onChange={(event) => handleChange(event)}>
+        <option value="">Select a padding</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
       </select>
     </div>
   );

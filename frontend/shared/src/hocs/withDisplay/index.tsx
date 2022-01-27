@@ -6,10 +6,6 @@ export const withDisplay = <T extends { class?: string }>(BaseComponent: Compone
     const [displayClass, setDisplayClass] = createSignal<string>('d-block');
     props = mergeProps({ class: '' }, props);
 
-    /**
-     * Computes the bootstrap display class with the given css rule display
-     * @param {Display} display
-     */
     const computeDisplayClass = (display?: DisplayProps['display']) => {
       setDisplayClass(() => (display ? ` d-${display} ` : ' d-block '));
     };

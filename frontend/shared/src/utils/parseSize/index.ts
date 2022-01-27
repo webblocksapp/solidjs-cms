@@ -7,8 +7,8 @@ import { pxToRem } from '@utils';
  * @returns
  */
 export const parseSize = (size?: string | number) => {
-  if (typeof size === 'number') {
-    return pxToRem(size) + 'rem';
+  if (!isNaN(Number(size))) {
+    return pxToRem(Number(size)) + 'rem';
   } else {
     return size;
   }

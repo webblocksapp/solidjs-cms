@@ -6,10 +6,6 @@ export const withShadow = <T extends { class?: string }>(BaseComponent: Componen
     const [boxShadowClass, setBoxShadowClass] = createSignal<string>('');
     props = mergeProps({ class: '' }, props);
 
-    /**
-     * Computes the shadow class with the given shadow scale value.
-     * @param scale
-     */
     const computeBoxShadowClass = (scale: ShadowsProps['boxShadow']) => {
       setBoxShadowClass(() => {
         switch (scale) {

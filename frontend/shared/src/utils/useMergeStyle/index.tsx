@@ -15,7 +15,7 @@ export const useMergeStyle = () => {
       let inlineStyle = '';
 
       Object.keys(styleArg).forEach((key) => {
-        inlineStyle += ` ${key.replace(/[A-Z]/g, '-$&').toLowerCase()}: ${styleArg[key]}; `;
+        inlineStyle += ` ${key}: ${styleArg[key]}; `;
       });
 
       setStyle(`${style()} ${inlineStyle}`);

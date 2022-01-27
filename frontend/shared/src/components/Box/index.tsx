@@ -8,8 +8,10 @@ import {
   PositionsProps,
   ShadowsProps,
   SizingProps,
+  SpacingProps,
 } from '@app-types';
 import { withBorder, withDisplay, withFlex, withPalette, withPosition, withShadow, withSizing } from '@hocs';
+import { withSpacing } from 'hocs/withSpacing';
 
 export interface BoxProps
   extends BorderProps,
@@ -19,7 +21,8 @@ export interface BoxProps
     PaletteProps,
     PositionsProps,
     ShadowsProps,
-    SizingProps {}
+    SizingProps,
+    SpacingProps {}
 
 let Box: Component<BoxProps> = (props) => {
   return <div {...props}>{props.children}</div>;
@@ -32,5 +35,6 @@ Box = withPalette(Box);
 Box = withPosition(Box);
 Box = withShadow(Box);
 Box = withSizing(Box);
+Box = withSpacing(Box);
 
 export { Box };

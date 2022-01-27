@@ -12,52 +12,28 @@ export const withPosition = <T extends { class?: string; style?: Style }>(BaseCo
     const { style, mergeStyle } = useMergeStyle();
     props = mergeProps({ class: '' }, props);
 
-    /**
-     * Computes the position class with the given css rule value.
-     * @param position
-     */
     const computePositionClass = (position?: PositionsProps['position']) => {
       setPositionClass(() => (position ? ` position-${position} ` : ''));
     };
 
-    /**
-     * Computes the position class with the given position scale value.
-     * @param position
-     */
     const computeTopClass = (top?: PositionScale) => {
       setTopClass(() => (top ? ` top-${top} ` : ''));
     };
 
-    /**
-     * Computes the position class with the given position scale value.
-     * @param position
-     */
     const computeRightClass = (right?: PositionScale) => {
       setRightClass(() => (right ? ` end-${right} ` : ''));
     };
 
-    /**
-     * Computes the position class with the given position scale value.
-     * @param position
-     */
     const computeBottomClass = (bottom?: PositionScale) => {
       setBottomClass(() => (bottom ? ` bottom-${bottom} ` : ''));
     };
 
-    /**
-     * Computes the position class with the given position scale value.
-     * @param position
-     */
     const computeLeftClass = (left?: PositionScale) => {
       setLeftClass(() => (left ? ` left-${left} ` : ''));
     };
 
-    /**
-     * Computes the zIndex style with the given css rule value.
-     * @param position
-     */
     const computeZIndexStyle = (zIndex?: PositionsProps['zIndex']) => {
-      mergeStyle(props.style, { 'z-index': zIndex });
+      zIndex && mergeStyle(props.style, { 'z-index': zIndex });
     };
 
     createEffect(() => computePositionClass(props.position));
