@@ -7,7 +7,7 @@ export interface TypographyProps {
   fontStyle?: Properties['fontStyle'];
   fontWeight?: Properties['fontWeight'];
   letterSpacing?: Properties['letterSpacing'];
-  lineHeight?: Properties['lineHeight'];
+  lineHeight?: 1 | 'sm' | 'base' | 'lg';
   monospace?: boolean;
   textAlign?: Properties['textAlign'];
   textDecoration?: Properties['textDecoration'];

@@ -20,4 +20,5 @@ export * from './SizingScale';
 export * from './SpacingProps';
 export * from './SpacingScale';
 export * from './Style';
+export * from './TypographyComponent';
 export * from './TypographyProps';

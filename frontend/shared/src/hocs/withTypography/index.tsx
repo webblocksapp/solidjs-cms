@@ -31,6 +31,7 @@ export const withTypography = <T extends { class?: string }>(BaseComponent: Comp
     };
 
     const computeTextAlignClass = (value?: TypographyProps['textAlign']) => {
+      value = value === 'right' ? 'end' : value;
       setTextAlignClass(() => (value ? ` text-${value} ` : ''));
     };
 
