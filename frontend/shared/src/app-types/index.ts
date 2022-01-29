@@ -6,6 +6,7 @@ export * from './CommonObject';
 export * from './DisplayProps';
 export * from './DivElement';
 export * from './FlexboxProps';
+export * from './FontSizeScale';
 export * from './GridProps';
 export * from './OneZero';
 export * from './PaletteColor';

@@ -9,9 +9,19 @@ import {
   ShadowsProps,
   SizingProps,
   SpacingProps,
+  TypographyProps,
 } from '@app-types';
-import { withBorder, withDisplay, withFlex, withPalette, withPosition, withShadow, withSizing } from '@hocs';
-import { withSpacing } from 'hocs/withSpacing';
+import {
+  withBorder,
+  withDisplay,
+  withFlex,
+  withPalette,
+  withPosition,
+  withShadow,
+  withSizing,
+  withSpacing,
+  withTypography,
+} from '@hocs';
 
 export interface BoxProps
   extends BorderProps,
@@ -22,7 +32,8 @@ export interface BoxProps
     PositionsProps,
     ShadowsProps,
     SizingProps,
-    SpacingProps {}
+    SpacingProps,
+    TypographyProps {}
 
 let Box: Component<BoxProps> = (props) => {
   return <div {...props}>{props.children}</div>;
@@ -36,5 +47,6 @@ Box = withPosition(Box);
 Box = withShadow(Box);
 Box = withSizing(Box);
 Box = withSpacing(Box);
+Box = withTypography(Box);
 
 export { Box };

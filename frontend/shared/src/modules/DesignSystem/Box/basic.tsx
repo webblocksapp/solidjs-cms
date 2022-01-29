@@ -111,6 +111,16 @@ export const Basic: Component = () => {
         <option>4</option>
         <option>5</option>
       </select>
+
+      <select name="fontSize" onChange={(event) => handleChange(event)}>
+        <option value="">Select a font size</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+      </select>
     </div>
   );
 };

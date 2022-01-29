@@ -1,5 +1,5 @@
 import { Component, createSignal, createEffect, mergeProps } from 'solid-js';
-import { BorderProps, BorderScale, OneZero } from '@app-types';
+import { BorderProps } from '@app-types';
 
 export const withBorder = <T extends { class?: string }>(BaseComponent: Component<T>) => {
   return (props: T & BorderProps) => {
@@ -11,28 +11,28 @@ export const withBorder = <T extends { class?: string }>(BaseComponent: Componen
     const [borderLeftClass, setBorderLeftClass] = createSignal<string>('');
     props = mergeProps({ class: '' }, props);
 
-    const computeBorderScaleClass = (width?: BorderScale) => {
+    const computeBorderScaleClass = (width?: BorderProps['border']) => {
       setBorderScaleClass(() => (width ? ` border-${width} ` : ''));
     };
 
-    const computeBorderClass = (width?: BorderScale) => {
+    const computeBorderClass = (width?: BorderProps['border']) => {
       computeBorderScaleClass(width);
       setBorderClass(() => (width ? ` border ` : ''));
     };
 
-    const computeBorderTopClass = (flag?: OneZero) => {
+    const computeBorderTopClass = (flag?: BorderProps['borderTop']) => {
       setBorderTopClass(() => (props.borderTop ? ` border-top-${flag} ` : ''));
     };
 
-    const computeBorderRightClass = (flag?: OneZero) => {
+    const computeBorderRightClass = (flag?: BorderProps['borderRight']) => {
       setBorderRightClass(() => (props.borderRight ? ` border-end-${flag} ` : ''));
     };
 
-    const computeBorderBottomClass = (flag?: OneZero) => {
+    const computeBorderBottomClass = (flag?: BorderProps['borderBottom']) => {
       setBorderBottomClass(() => (props.borderBottom ? ` border-bottom-${flag} ` : ''));
     };
 
-    const computeBorderLeftClass = (flag?: OneZero) => {
+    const computeBorderLeftClass = (flag?: BorderProps['borderLeft']) => {
       setBorderLeftClass(() => (props.borderLeft ? ` border-start-${flag} ` : ''));
     };
 

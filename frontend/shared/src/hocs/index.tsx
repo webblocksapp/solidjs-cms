@@ -6,3 +6,5 @@ export * from './withPalette';
 export * from './withPosition';
 export * from './withShadow';
 export * from './withSizing';
+export * from './withSpacing';
+export * from './withTypography';

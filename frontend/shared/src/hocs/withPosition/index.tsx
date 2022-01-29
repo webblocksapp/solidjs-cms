@@ -1,5 +1,5 @@
 import { Component, createEffect, createSignal, mergeProps } from 'solid-js';
-import { PositionScale, PositionsProps, Style } from '@app-types';
+import { PositionsProps, Style } from '@app-types';
 import { useMergeStyle } from '@utils';
 
 export const withPosition = <T extends { class?: string; style?: Style }>(BaseComponent: Component<T>) => {
@@ -16,19 +16,19 @@ export const withPosition = <T extends { class?: string; style?: Style }>(BaseCo
       setPositionClass(() => (position ? ` position-${position} ` : ''));
     };
 
-    const computeTopClass = (top?: PositionScale) => {
+    const computeTopClass = (top?: PositionsProps['top']) => {
       setTopClass(() => (top ? ` top-${top} ` : ''));
     };
 
-    const computeRightClass = (right?: PositionScale) => {
+    const computeRightClass = (right?: PositionsProps['right']) => {
       setRightClass(() => (right ? ` end-${right} ` : ''));
     };
 
-    const computeBottomClass = (bottom?: PositionScale) => {
+    const computeBottomClass = (bottom?: PositionsProps['bottom']) => {
       setBottomClass(() => (bottom ? ` bottom-${bottom} ` : ''));
     };
 
-    const computeLeftClass = (left?: PositionScale) => {
+    const computeLeftClass = (left?: PositionsProps['left']) => {
       setLeftClass(() => (left ? ` left-${left} ` : ''));
     };
 
