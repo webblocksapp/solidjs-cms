@@ -7,4 +7,6 @@ export interface SizingProps {
   maxHeight?: Properties['maxHeight'];
   minHeight?: Properties['minHeight'];
   boxSizing?: Properties['boxSizing'];
+  fullWidth?: boolean;
+  fullHeight?: boolean;
 }

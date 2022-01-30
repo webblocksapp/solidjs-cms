@@ -1,9 +1,9 @@
 import { RouteDefinition } from 'solid-app-router';
-import { DesignSystem } from '@modules/DesignSystem';
+import { MainLayout } from '@layouts';
 
 export const routes: RouteDefinition[] = [
   {
     path: '',
-    component: DesignSystem,
+    component: MainLayout,
   },
 ];

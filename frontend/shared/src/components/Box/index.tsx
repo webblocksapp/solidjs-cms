@@ -1,9 +1,10 @@
-import { Component } from 'solid-js';
+import { Component, createEffect } from 'solid-js';
 import {
   BorderProps,
   DisplayProps,
   DivElement,
   FlexboxProps,
+  GridProps,
   PaletteProps,
   PositionsProps,
   ShadowsProps,
@@ -15,6 +16,7 @@ import {
   withBorder,
   withDisplay,
   withFlex,
+  withGrid,
   withPalette,
   withPosition,
   withShadow,
@@ -22,18 +24,23 @@ import {
   withSpacing,
   withTypography,
 } from '@hocs';
+import { Properties } from 'csstype';
 
 export interface BoxProps
   extends BorderProps,
     DisplayProps,
     DivElement,
     FlexboxProps,
+    GridProps,
     PaletteProps,
     PositionsProps,
     ShadowsProps,
     SizingProps,
     SpacingProps,
-    TypographyProps {}
+    TypographyProps {
+  gridTemplateColumns?: Properties['gridTemplateColumns'];
+  gridTemplateRows?: Properties['gridTemplateRows'];
+}
 
 let Box: Component<BoxProps> = (props) => {
   return <div {...props}>{props.children}</div>;
@@ -48,5 +55,6 @@ Box = withShadow(Box);
 Box = withSizing(Box);
 Box = withSpacing(Box);
 Box = withTypography(Box);
+Box = withGrid(Box);
 
 export { Box };

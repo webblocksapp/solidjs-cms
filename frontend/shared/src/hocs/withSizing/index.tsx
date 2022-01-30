@@ -5,6 +5,8 @@ import { isBs5Size, parseSize, useMergeStyle } from '@utils';
 export const withSizing = <T extends { class?: string; style?: Style }>(BaseComponent: Component<T>) => {
   return (props: T & SizingProps) => {
     const [widthClass, setWidthClass] = createSignal<string>('');
+    const [fullHeightClass, setFullHeightClass] = createSignal<string>('');
+    const [fullWidthClass, setFullWidthClass] = createSignal<string>('');
     const { style, mergeStyle } = useMergeStyle();
     props = mergeProps({ class: '' }, props);
 
@@ -21,8 +23,24 @@ export const withSizing = <T extends { class?: string; style?: Style }>(BaseComp
       setWidthClass(className);
     };
 
-    createEffect(() => computeWidth(props.width));
+    const computeFullHeightClass = (flag?: boolean) => {
+      setFullHeightClass(() => (flag ? ' h-100 ' : ''));
+    };
 
-    return <BaseComponent {...props} class={props.class + widthClass()} style={style()} />;
+    const computeFullWidthClass = (flag?: boolean) => {
+      setFullWidthClass(() => (flag ? ' w-100 ' : ''));
+    };
+
+    createEffect(() => computeWidth(props.width));
+    createEffect(() => computeFullHeightClass(props.fullHeight));
+    createEffect(() => computeFullWidthClass(props.fullWidth));
+
+    return (
+      <BaseComponent
+        {...props}
+        class={props.class + widthClass() + fullHeightClass() + fullWidthClass()}
+        style={style()}
+      />
+    );
   };
 };

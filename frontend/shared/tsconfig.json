@@ -13,7 +13,9 @@
     "paths": {
       "@app-types": ["app-types"],
       "@components": ["components"],
+      "@constants": ["constants"],
       "@hocs": ["hocs"],
+      "@layouts": ["layouts"],
       "@modules/*": ["modules/*"],
       "@routes": ["routes"],
       "@utils": ["utils"]

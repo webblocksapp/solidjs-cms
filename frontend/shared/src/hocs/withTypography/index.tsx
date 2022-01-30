@@ -1,7 +1,10 @@
 import { TypographyProps } from '@app-types';
 import { Component, createEffect, createSignal, mergeProps } from 'solid-js';
 
-export const withTypography = <T extends { class?: string }>(BaseComponent: Component<T>) => {
+export const withTypography = <T extends { class?: string }>(
+  BaseComponent: Component<T>,
+  defaultProps?: Partial<T>
+) => {
   return (props: T & TypographyProps) => {
     const [fontSizeClass, setFontSizeClass] = createSignal<string>('');
     const [fontStyleClass, setFontStyleClass] = createSignal<string>('');
@@ -12,7 +15,7 @@ export const withTypography = <T extends { class?: string }>(BaseComponent: Comp
     const [textOverflowClass, setTextOverflowClass] = createSignal<string>('');
     const [monospaceClass, setMonospaceClass] = createSignal<string>('');
     const [textDecorationClass, setTextDecorationClass] = createSignal<string>('');
-    props = mergeProps({ class: '' }, props);
+    props = mergeProps({ class: '', ...defaultProps }, props);
 
     const computeFontSizeClass = (value?: TypographyProps['fontSize']) => {
       setFontSizeClass(() => (value ? `fs-${value}` : ''));

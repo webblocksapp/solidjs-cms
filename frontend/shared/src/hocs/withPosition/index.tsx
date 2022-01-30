@@ -32,16 +32,12 @@ export const withPosition = <T extends { class?: string; style?: Style }>(BaseCo
       setLeftClass(() => (left ? ` left-${left} ` : ''));
     };
 
-    const computeZIndexStyle = (zIndex?: PositionsProps['zIndex']) => {
-      zIndex && mergeStyle(props.style, { 'z-index': zIndex });
-    };
-
     createEffect(() => computePositionClass(props.position));
     createEffect(() => computeTopClass(props.top));
     createEffect(() => computeRightClass(props.right));
     createEffect(() => computeBottomClass(props.bottom));
     createEffect(() => computeLeftClass(props.left));
-    createEffect(() => computeZIndexStyle(props.zIndex));
+    createEffect(() => mergeStyle(props.style, { 'z-index': props.zIndex }));
 
     return (
       <BaseComponent

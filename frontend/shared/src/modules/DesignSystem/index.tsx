@@ -6,9 +6,9 @@ import { Basic as TypographyBasic } from './Typography/basic';
 export const DesignSystem: Component = () => {
   return (
     <>
-      {/* <BoxBasic /> */}
+      <BoxBasic />
       {/* <GridBasic /> */}
-      <TypographyBasic />
+      {/* <TypographyBasic /> */}
     </>
   );
 };
