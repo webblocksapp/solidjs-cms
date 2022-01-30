@@ -50,6 +50,16 @@ export const Basic: Component = () => {
         <option>center</option>
         <option>right</option>
       </select>
+
+      <select name="color" onChange={(event) => handleChange(event)}>
+        <option value="">Select a color</option>
+        <option>primary</option>
+        <option>secondary</option>
+        <option>success</option>
+        <option>danger</option>
+        <option>info</option>
+        <option>warning</option>
+      </select>
     </div>
   );
 };
