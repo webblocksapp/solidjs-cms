@@ -1,4 +1,4 @@
-import { Component, createEffect } from 'solid-js';
+import { Component } from 'solid-js';
 import {
   BorderProps,
   DisplayProps,

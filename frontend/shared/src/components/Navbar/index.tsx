@@ -1,4 +1,5 @@
 import { PaletteColor, ThemeMode, DeviceSize } from '@app-types';
+import { Box, Button, Typography } from '@components';
 import { Component, createEffect, createSignal, JSXElement, mergeProps } from 'solid-js';
 
 export interface NavbarProps {
@@ -15,7 +16,7 @@ export const Navbar: Component<NavbarProps> = (props) => {
   const [modeClass, setModeClass] = createSignal<string>('');
   const [expandClass, setExpandClass] = createSignal<string>('');
 
-  props = mergeProps({ mode: 'light', bgColor: 'light', expand: 'lg' }, props);
+  props = mergeProps({ class: '', mode: 'light', bgColor: 'light', expand: 'lg' }, props);
 
   const computeBgColorClass = (value?: PaletteColor) => {
     setBgColorClass(() => (value ? ` bg-${value} ` : ''));
@@ -34,16 +35,18 @@ export const Navbar: Component<NavbarProps> = (props) => {
   createEffect(() => computeExpandClass(props.expand));
 
   return (
-    <nav {...props} class={props.class + ' navbar ' + bgColorClass() + modeClass() + expandClass()}>
-      <div class="container-fluid">
+    <Box {...props} class={props.class + ' navbar ' + bgColorClass() + modeClass() + expandClass()}>
+      <Box px={3} py={1}>
         {props.brand}
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
-          {props.togglerIcon ? props.togglerIcon : <span class="navbar-toggler-icon"></span>}
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">{props.children}</div>
-        </div>
-      </div>
-    </nav>
+        <Button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+          {props.togglerIcon ? props.togglerIcon : <Typography component="span" class="navbar-toggler-icon" />}
+        </Button>
+        <Box class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <Box pt={2} class="navbar-nav">
+            {props.children}
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 };
