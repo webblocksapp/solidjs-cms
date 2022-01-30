@@ -1,20 +1,44 @@
-import { Component, mergeProps } from 'solid-js';
+import { PaletteColor, ThemeMode, DeviceSize } from '@app-types';
+import { Component, createEffect, createSignal, JSXElement, mergeProps } from 'solid-js';
 
 export interface NavbarProps {
+  bgColor?: PaletteColor;
+  brand?: JSXElement;
   class?: string;
-  theme?: string;
+  mode?: ThemeMode;
+  togglerIcon?: JSXElement;
+  expand?: DeviceSize;
 }
 
 export const Navbar: Component<NavbarProps> = (props) => {
-  props = mergeProps({ class: 'navbar-light navbar-expand-lg' }, props);
+  const [bgColorClass, setBgColorClass] = createSignal<string>('');
+  const [modeClass, setModeClass] = createSignal<string>('');
+  const [expandClass, setExpandClass] = createSignal<string>('');
+
+  props = mergeProps({ mode: 'light', bgColor: 'light', expand: 'lg' }, props);
+
+  const computeBgColorClass = (value?: PaletteColor) => {
+    setBgColorClass(() => (value ? ` bg-${value} ` : ''));
+  };
+
+  const computeModeClass = (value?: ThemeMode) => {
+    setModeClass(() => (value ? ` navbar-${value} ` : ''));
+  };
+
+  const computeExpandClass = (value?: DeviceSize) => {
+    setExpandClass(() => (value ? ` navbar-expand-${value} ` : ''));
+  };
+
+  createEffect(() => computeBgColorClass(props.bgColor));
+  createEffect(() => computeModeClass(props.mode));
+  createEffect(() => computeExpandClass(props.expand));
+
   return (
-    <nav {...props} class={props.class + ' navbar '}>
+    <nav {...props} class={props.class + ' navbar ' + bgColorClass() + modeClass() + expandClass()}>
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          Navbar
-        </a>
+        {props.brand}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
-          <span class="navbar-toggler-icon"></span>
+          {props.togglerIcon ? props.togglerIcon : <span class="navbar-toggler-icon"></span>}
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">{props.children}</div>
