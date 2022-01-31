@@ -27,27 +27,22 @@ export const Grid: Component<GridProps> = (props) => {
   const [xlColClass, setXlColClass] = createSignal<string>('');
   const [xxlColClass, setXxlColClass] = createSignal<string>('');
 
-  //Implements the gutters class which adds spacing at x and y.
   const computeContainerClass = (flag?: boolean) => {
     setContainerClass(() => (flag ? ' row ' : ''));
   };
 
-  //Implements the gutters class which adds spacing at x and y.
   const computeSpacingClass = (spacing?: SpacingScale) => {
     setSpacingClass(() => (spacing ? ` g-${spacing} ` : ''));
   };
 
-  //Implements the gutters class which adds spacing at y (Between rows).
   const computeRowSpacingClass = (spacing?: SpacingScale) => {
     setRowSpacingClass(() => (spacing ? ` gy-${spacing} ` : ''));
   };
 
-  //Implements the gutters class which adds spacing at x (Between cols).
   const computeColumnSpacingClass = (spacing?: SpacingScale) => {
     setColumnSpacingClass(() => (spacing ? ` gx-${spacing} ` : ''));
   };
 
-  //Implements the xs col class
   const computeXsColClass = (colSize?: number, item?: boolean) => {
     setXsColClass(() => {
       if (colSize && props.item) {
@@ -60,27 +55,22 @@ export const Grid: Component<GridProps> = (props) => {
     });
   };
 
-  //Implements the sm col class
   const computeSmColClass = (colSize?: number) => {
     setSmColClass(() => (colSize && props.item ? ` col-sm-${colSize} ` : ''));
   };
 
-  //Implements the sm col class
   const computeMdColClass = (colSize?: number) => {
     setMdColClass(() => (colSize && props.item ? ` col-md-${colSize} ` : ''));
   };
 
-  //Implements the lg col class
   const computeLgColClass = (colSize?: number) => {
     setLgColClass(() => (colSize && props.item ? ` col-lg-${colSize} ` : ''));
   };
 
-  //Implements the xl col class
   const computeXlColClass = (colSize?: number) => {
     setXlColClass(() => (colSize && props.item ? ` col-xl-${colSize} ` : ''));
   };
 
-  //Implements the xxl col class
   const computeXxlColClass = (colSize?: number) => {
     setXxlColClass(() => (colSize && props.item ? ` col-xxl-${colSize} ` : ''));
   };
