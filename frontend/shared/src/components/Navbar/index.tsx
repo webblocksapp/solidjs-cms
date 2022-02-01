@@ -1,5 +1,5 @@
 import { PaletteColor, ThemeMode, DeviceSize } from '@app-types';
-import { Box, Button, Typography } from '@components';
+import { Box } from '@components';
 import { Component, createEffect, createSignal, JSXElement, mergeProps } from 'solid-js';
 
 export interface NavbarProps {
@@ -38,14 +38,6 @@ export const Navbar: Component<NavbarProps> = (props) => {
     <Box gridArea="navbar" {...props} class={props.class + ' navbar ' + bgColorClass() + modeClass() + expandClass()}>
       <Box px={3} py={1}>
         {props.brand}
-        <Button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
-          {props.togglerIcon ? props.togglerIcon : <Typography component="span" class="navbar-toggler-icon" />}
-        </Button>
-        <Box class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <Box pt={2} class="navbar-nav">
-            {props.children}
-          </Box>
-        </Box>
       </Box>
     </Box>
   );

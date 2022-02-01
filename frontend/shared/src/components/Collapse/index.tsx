@@ -1,40 +1,29 @@
 import { DivElement } from '@app-types';
 import * as bootstrap from 'bootstrap';
-import { Component, createEffect, createSignal, mergeProps, onMount } from 'solid-js';
+import { Component, createEffect, createSignal, onMount } from 'solid-js';
 
 export type CollapseHandler = { toggle: () => void };
 export interface CollapseProps extends DivElement {
-  expanded?: boolean;
-  setHandler: (handler: CollapseHandler) => CollapseHandler;
+  expand?: boolean;
 }
 
 export const Collapse: Component<CollapseProps> = (props) => {
-  const [expand, setExpand] = createSignal<boolean>();
-  props = mergeProps({ expanded: true }, props);
-
   let div: HTMLDivElement | undefined;
   let collapsableArea: bootstrap.Collapse | undefined;
 
-  const _toggle = (flag?: boolean) => {
-    flag && collapsableArea?.show();
-    flag === false && collapsableArea?.hide();
-  };
-
-  const toggle = () => {
+  const toggle = (flag?: boolean) => {
     if (!div?.classList.contains('collapsing')) {
-      setExpand(!expand());
+      flag !== undefined && collapsableArea?.toggle();
     }
   };
 
   onMount(() => {
     collapsableArea = new bootstrap.Collapse(div as any, { toggle: false });
-    setExpand(props?.expanded);
-    props.setHandler({ toggle });
+    props.expand === false && div?.classList.add('collapse');
+    props.expand === true && div?.classList.add('collapse', 'show');
   });
 
-  createEffect(() => _toggle(expand()));
+  createEffect(() => toggle(props.expand));
 
-  return (
-    <div {...props} classList={{ collapse: props.expanded === false, 'collapse show': props.expanded }} ref={div} />
-  );
+  return <div {...props} ref={div} />;
 };
