@@ -1,6 +1,6 @@
 import { DivElement } from '@app-types';
 import * as bootstrap from 'bootstrap';
-import { Component, createEffect, createSignal, onMount } from 'solid-js';
+import { Component, createEffect, onMount } from 'solid-js';
 
 export type CollapseHandler = { toggle: () => void };
 export interface CollapseProps extends DivElement {

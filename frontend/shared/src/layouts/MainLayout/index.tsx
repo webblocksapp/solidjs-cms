@@ -1,4 +1,4 @@
-import { Box, Navbar, Content, Sidebar, Collapse, Button } from '@components';
+import { Box, Navbar, Content, Sidebar, Collapse, Button, List, ListItem } from '@components';
 import { Component, createSignal } from 'solid-js';
 
 export const MainLayout: Component = () => {
@@ -23,16 +23,14 @@ export const MainLayout: Component = () => {
               Expand
             </Button>
             <Collapse expand={expand()}>
-              <ul>
-                <li>AAA</li>
-                <li>AAA</li>
-                <li>AAA</li>
-                <li>AAA</li>
-                <li>AAA</li>
-                <li>AAA</li>
-                <li>AAA</li>
-                <li>AAA</li>
-              </ul>
+              <List component="ul">
+                <ListItem border>AAA</ListItem>
+                <ListItem>AAA</ListItem>
+                <ListItem>AAA</ListItem>
+                <ListItem>AAA</ListItem>
+                <ListItem>AAA</ListItem>
+                <ListItem>AAA</ListItem>
+              </List>
             </Collapse>
           </Box>
         </Content>
