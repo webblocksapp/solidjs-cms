@@ -9,4 +9,5 @@ export * from './List';
 export * from './ListItem';
 export * from './Navbar';
 export * from './Sidebar';
+export * from './TreeMenu';
 export * from './Typography';

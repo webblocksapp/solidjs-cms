@@ -1,6 +1,6 @@
 import { DivElement } from '@app-types';
 import * as bootstrap from 'bootstrap';
-import { Component, createEffect, onMount } from 'solid-js';
+import { Component, createEffect, createSignal, mergeProps, onMount } from 'solid-js';
 
 export type CollapseHandler = { toggle: () => void };
 export interface CollapseProps extends DivElement {
@@ -10,20 +10,30 @@ export interface CollapseProps extends DivElement {
 export const Collapse: Component<CollapseProps> = (props) => {
   let div: HTMLDivElement | undefined;
   let collapsableArea: bootstrap.Collapse | undefined;
+  props = mergeProps({ class: 'collapse' }, props);
 
   const toggle = (flag?: boolean) => {
-    if (!div?.classList.contains('collapsing')) {
-      flag !== undefined && collapsableArea?.toggle();
-    }
+    flag === true && show();
+    flag === false && hide();
+  };
+
+  const show = () => {
+    collapsableArea?.show();
+  };
+
+  const hide = () => {
+    collapsableArea?.hide();
   };
 
   onMount(() => {
     collapsableArea = new bootstrap.Collapse(div as any, { toggle: false });
-    props.expand === false && div?.classList.add('collapse');
-    props.expand === true && div?.classList.add('collapse', 'show');
+    props.expand && div?.classList.add('show');
+    toggle(props.expand);
   });
 
-  createEffect(() => toggle(props.expand));
+  createEffect(() => {
+    toggle(props.expand);
+  });
 
   return <div {...props} ref={div} />;
 };

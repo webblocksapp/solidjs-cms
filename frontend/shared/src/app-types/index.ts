@@ -24,6 +24,7 @@ export * from './SpacingProps';
 export * from './SpacingScale';
 export * from './Style';
 export * from './ThemeMode';
+export * from './TreeMenu';
 export * from './TypographyComponent';
 export * from './TypographyProps';
 export * from './Variant';

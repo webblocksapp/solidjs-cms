@@ -1,9 +1,8 @@
-import { Box, Navbar, Content, Sidebar, Collapse, Button, List, ListItem } from '@components';
-import { Component, createSignal } from 'solid-js';
+import { Box, Navbar, Content, Sidebar, TreeMenu } from '@components';
+import { SIDEBAR_MENU } from '@constants';
+import { Component } from 'solid-js';
 
 export const MainLayout: Component = () => {
-  const [expand, setExpand] = createSignal<boolean>(true);
-
   return (
     <Box fullHeight display="grid" gridTemplateColumns="210px 1fr" gridTemplateAreas="'sidebar main-content'">
       <Sidebar boxShadow={2} zIndex={2} bgcolor="light">
@@ -19,19 +18,7 @@ export const MainLayout: Component = () => {
         <Navbar />
         <Content>
           <Box>
-            <Button color="dark" onClick={() => setExpand(!expand())}>
-              Expand
-            </Button>
-            <Collapse expand={expand()}>
-              <List component="ul">
-                <ListItem border>AAA</ListItem>
-                <ListItem>AAA</ListItem>
-                <ListItem>AAA</ListItem>
-                <ListItem>AAA</ListItem>
-                <ListItem>AAA</ListItem>
-                <ListItem>AAA</ListItem>
-              </List>
-            </Collapse>
+            <TreeMenu menu={SIDEBAR_MENU} />
           </Box>
         </Content>
       </Box>
