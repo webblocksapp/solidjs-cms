@@ -5,6 +5,7 @@ import {
   DivElement,
   FlexboxProps,
   GridProps,
+  OverflowProps,
   PaletteProps,
   PositionsProps,
   ShadowsProps,
@@ -25,6 +26,7 @@ import {
   withTypography,
 } from '@hocs';
 import { Properties } from 'csstype';
+import { withOverflow } from 'hocs/withOverflow';
 
 export interface BoxProps
   extends BorderProps,
@@ -32,6 +34,7 @@ export interface BoxProps
     DivElement,
     FlexboxProps,
     GridProps,
+    OverflowProps,
     PaletteProps,
     PositionsProps,
     ShadowsProps,
@@ -56,5 +59,6 @@ Box = withSizing(Box);
 Box = withSpacing(Box);
 Box = withTypography(Box);
 Box = withGrid(Box);
+Box = withOverflow(Box);
 
 export { Box };

@@ -35,7 +35,7 @@ export const Navbar: Component<NavbarProps> = (props) => {
   createEffect(() => computeExpandClass(props.expand));
 
   return (
-    <Box {...props} class={props.class + ' navbar ' + bgColorClass() + modeClass() + expandClass()}>
+    <Box gridArea="navbar" {...props} class={props.class + ' navbar ' + bgColorClass() + modeClass() + expandClass()}>
       <Box px={3} py={1}>
         {props.brand}
         <Button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">

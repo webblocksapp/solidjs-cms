@@ -10,6 +10,8 @@ export const withGrid = <T extends { class?: string; style?: Style }>(BaseCompon
       mergeStyle(props.style, {
         'grid-template-columns': props.gridTemplateColumns,
         'grid-template-rows': props.gridTemplateRows,
+        'grid-area': props.gridArea,
+        'grid-template-areas': props.gridTemplateAreas,
       })
     );
 
