@@ -28,6 +28,12 @@ export const Collapse: Component<CollapseProps> = (props) => {
   onMount(() => {
     collapsableArea = new bootstrap.Collapse(div as any, { toggle: false });
     props.expand && div?.classList.add('show');
+    div?.addEventListener('shown.bs.collapse', function () {
+      props.expand === false && collapsableArea?.hide();
+    });
+    div?.addEventListener('hidden.bs.collapse', function () {
+      props.expand === true && collapsableArea?.show();
+    });
     toggle(props.expand);
   });
 
