@@ -1,5 +1,6 @@
 import { Box, Navbar, Content, Sidebar, TreeMenu } from '@components';
 import { SIDEBAR_MENU } from '@constants';
+import { Outlet } from 'solid-app-router';
 import { Component } from 'solid-js';
 
 export const MainLayout: Component = () => {
@@ -7,6 +8,8 @@ export const MainLayout: Component = () => {
     <Box fullHeight display="grid" gridTemplateColumns="210px 1fr" gridTemplateAreas="'sidebar main-content'">
       <Sidebar boxShadow={2} zIndex={2} bgcolor="light">
         Sidebar
+        <hr />
+        <TreeMenu menu={SIDEBAR_MENU} />
       </Sidebar>
       <Box
         fullHeight
@@ -17,8 +20,8 @@ export const MainLayout: Component = () => {
       >
         <Navbar />
         <Content>
-          <Box>
-            <TreeMenu menu={SIDEBAR_MENU} />
+          <Box p={2}>
+            <Outlet />
           </Box>
         </Content>
       </Box>

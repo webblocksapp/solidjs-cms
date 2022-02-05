@@ -3,10 +3,12 @@ import { Component, createEffect, createSignal, JSX, mergeProps } from 'solid-js
 export interface ListItemProps extends JSX.HTMLAttributes<any> {
   component?: 'a' | 'li' | 'button';
   border?: boolean;
+  active?: boolean;
 }
 
 export const ListItem: Component<ListItemProps> = (props) => {
   const [borderClass, setBorderClass] = createSignal<string>('');
+  const [activeClass, setActiveClass] = createSignal<string>('');
 
   props = mergeProps({ class: '', component: 'li' }, props);
 
@@ -14,9 +16,14 @@ export const ListItem: Component<ListItemProps> = (props) => {
     setBorderClass(() => (flag ? '' : ' border-0 '));
   };
 
-  const derivedClass = () => ' list-group-item ' + borderClass();
+  const computeActiveClass = (flag?: boolean) => {
+    setActiveClass(() => (flag ? ' active ' : ''));
+  };
+
+  const derivedClass = () => ' list-group-item ' + borderClass() + activeClass();
 
   createEffect(() => computeBorderClass(props.border));
+  createEffect(() => computeActiveClass(props.active));
 
   return (
     <>

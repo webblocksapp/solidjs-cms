@@ -1,5 +1,3 @@
-import { Accessor } from 'solid-js';
-
 export type TreeMenu = {
   label: string;
   path: string;
