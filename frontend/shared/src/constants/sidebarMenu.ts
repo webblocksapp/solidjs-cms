@@ -19,4 +19,9 @@ export const SIDEBAR_MENU: TreeMenu[] = [
     path: '/collapse',
     children: [{ label: 'Basic', path: '/collapse/basic' }],
   },
+  {
+    label: 'TextField',
+    path: '/text-field',
+    children: [{ label: 'Basic', path: '/text-field/basic' }],
+  },
 ];
