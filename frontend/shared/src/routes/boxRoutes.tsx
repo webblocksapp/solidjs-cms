@@ -1,14 +1,17 @@
 import { RouteDefinition } from 'solid-app-router';
-import { Basic } from '@modules/Box/basic';
+import { Basic, Spacing } from '@modules/Box';
 
 export const boxRoutes: RouteDefinition[] = [
   {
     path: '/box',
-    component: Basic,
     children: [
       {
         path: '/basic',
         component: Basic,
+      },
+      {
+        path: '/spacing',
+        component: Spacing,
       },
     ],
   },

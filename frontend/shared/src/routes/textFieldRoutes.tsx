@@ -4,7 +4,6 @@ import { Basic } from '@modules/TextField/basic';
 export const textFieldRoutes: RouteDefinition[] = [
   {
     path: '/text-field',
-    component: Basic,
     children: [
       {
         path: '/basic',

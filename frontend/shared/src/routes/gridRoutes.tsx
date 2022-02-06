@@ -4,7 +4,6 @@ import { Basic } from '@modules/Grid/basic';
 export const gridRoutes: RouteDefinition[] = [
   {
     path: '/grid',
-    component: Basic,
     children: [
       {
         path: '/basic',
