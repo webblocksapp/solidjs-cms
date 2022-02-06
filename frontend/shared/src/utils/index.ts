@@ -5,4 +5,6 @@ export * from './mapRecursive';
 export * from './matchUrl';
 export * from './parseSize';
 export * from './pxToRem';
+export * from './useFormHandler';
 export * from './useMergeStyle';
+export * from './yup';

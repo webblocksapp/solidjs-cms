@@ -69,7 +69,7 @@ export const TreeMenu: Component<TreeMenuProps> = (props) => {
   });
 
   createEffect(() => setPaddingLeft(() => pxToRem((props.nestingLevel || 0) * (props.paddingOffset || 0))));
-  createEffect(() => location.pathname && activate());
+  createEffect(() => activate());
 
   return (
     <List flush component="div">
