@@ -3,4 +3,5 @@ export type TreeMenu = {
   path: string;
   children?: TreeMenu[];
   expand?: boolean;
+  active?: boolean;
 };

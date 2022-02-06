@@ -1,75 +1,95 @@
-import { Component, JSX, For, createSignal, createEffect, mergeProps, onMount, Accessor } from 'solid-js';
+import { Component, JSX, For, createSignal, createEffect, mergeProps, onMount } from 'solid-js';
+import { createStore, DeepReadonly } from 'solid-js/store';
 import { List, ListItem, Collapse } from '@components';
 import { TreeMenu as TreeMenuType } from '@app-types';
-import { mapRecursive, pxToRem } from '@utils';
+import { matchUrl, pxToRem } from '@utils';
 import { useLocation, useNavigate } from 'solid-app-router';
 
 export interface TreeMenuProps extends JSX.HTMLAttributes<any> {
-  menu: TreeMenuType[];
+  menu: TreeMenuType[] | DeepReadonly<TreeMenuType>[];
   nestingLevel?: number;
   paddingOffset?: number;
 }
 
-type TreeMenuWithSignals = Omit<TreeMenuType, 'children'> & {
-  children?: TreeMenuWithSignals[];
-  expand: Accessor<boolean>;
-  setExpand: (flag: boolean) => void;
-  active: Accessor<boolean>;
-  setActive: (flag: boolean) => void;
-};
-
 export const TreeMenu: Component<TreeMenuProps> = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
-
-  const [menu, setMenu] = createSignal<TreeMenuWithSignals[]>([]);
+  const [store, setStore] = createStore<{ menu: TreeMenuType[] }>({
+    menu: [],
+  });
   const [paddingLeft, setPaddingLeft] = createSignal<number>();
-  props = mergeProps({ nestingLevel: 1, paddingOffset: 8 }, props);
+  props = mergeProps({ nestingLevel: 1, paddingOffset: 8, path: '' }, props);
 
-  const open = (menuItem: TreeMenuWithSignals) => {
-    mapRecursive(menu(), (item) => {
-      item.path === menuItem.path && item.setExpand(!item.expand());
-      item.setActive(isActive(item));
-      return item;
-    });
+  const open = (menuItem?: DeepReadonly<TreeMenuType>, index?: number) => {
+    setStore(
+      'menu',
+      (item, i) => {
+        //When component is mounted it expands the menu if the item path matches the url.
+        if (index === undefined) {
+          return matchUrl(location.pathname, item.path);
+        } else {
+          //Else, it expand the menu item according to the passed index.
+          return i === index;
+        }
+      },
+      'expand',
+      (expand) => {
+        if (index === undefined) {
+          return true;
+        } else {
+          return !expand;
+        }
+      }
+    );
 
-    menuItem.children === undefined && navigate(menuItem.path);
+    menuItem && menuItem.children === undefined && navigate(menuItem.path);
   };
 
-  const isActive = (item: TreeMenuWithSignals) => {
-    return Boolean(location.pathname.match(item.path)?.length);
+  const activate = () => {
+    //Inactivates all the menu items to false.
+    setStore(
+      'menu',
+      () => true,
+      'active',
+      () => false
+    );
+
+    //Activates only the menu items that matches the url path.
+    setStore(
+      'menu',
+      (item) => matchUrl(location.pathname, item.path),
+      'active',
+      () => true
+    );
   };
 
   onMount(() => {
-    const treeMenuWithSignals: TreeMenuWithSignals[] = mapRecursive(props.menu as any, (item) => {
-      const [expand, setExpand] = createSignal(false);
-      const [active, setActive] = createSignal(false);
-      setExpand(item.expand || isActive(item) || false);
-      setActive(isActive(item));
-      return { ...item, expand, setExpand, active, setActive } as TreeMenuWithSignals;
-    });
-
-    setMenu(treeMenuWithSignals);
+    setStore('menu', [...props.menu]);
+    open();
   });
 
   createEffect(() => setPaddingLeft(() => pxToRem((props.nestingLevel || 0) * (props.paddingOffset || 0))));
+  createEffect(() => location.pathname && activate());
 
   return (
     <List flush component="div">
-      <For each={menu()}>
-        {(item) => (
+      <For each={store.menu}>
+        {(item, index) => (
           <>
             <ListItem
-              active={item.children === undefined && item.active()}
-              onClick={() => open(item)}
+              active={item.children === undefined && item.active}
+              onClick={() => open(item, index())}
               component="button"
               style={{ 'padding-left': paddingLeft() + 'rem' }}
             >
               {item.label}
             </ListItem>
             {item.children && (
-              <Collapse expand={item.expand && item.expand()}>
-                <TreeMenu menu={item.children} nestingLevel={(props.nestingLevel || 0) + 1} />
+              <Collapse expand={item.expand}>
+                <TreeMenu
+                  menu={item.children as DeepReadonly<TreeMenuType>[]}
+                  nestingLevel={(props.nestingLevel || 0) + 1}
+                />
               </Collapse>
             )}
           </>
