@@ -1,6 +1,7 @@
 import { FormFieldComponent, InputElement, InputChangeEvent, InputFocusEvent } from '@app-types';
 import { HelperText, Input, Label, ValidationFeedback } from '@components';
 import { BaseFieldProps, withBaseField } from '@hocs';
+import { InputInputEvent } from 'app-types/InputInputEvent';
 import { Component } from 'solid-js';
 
 export interface TextFieldProps extends BaseFieldProps {
@@ -9,13 +10,14 @@ export interface TextFieldProps extends BaseFieldProps {
   type?: InputElement['type'];
   placeholder?: InputElement['placeholder'];
   helperText?: string;
-  onChange?: (event: InputChangeEvent) => void;
+  onInput?: (event: InputInputEvent) => void;
   onBlur?: (event: InputFocusEvent) => void;
 }
 
 const BaseTextField: Component<TextFieldProps> = (props) => {
-  const onChange = (event: InputChangeEvent) => {
-    props.onChange && props.onChange(event);
+  const onInput = (event: InputInputEvent) => {
+    props.formHandlerOnInput(event.currentTarget.value);
+    props.onInput && props.onInput(event);
   };
 
   const onBlur = (event: InputFocusEvent) => {
@@ -30,7 +32,7 @@ const BaseTextField: Component<TextFieldProps> = (props) => {
         </Label>
       )}
       <Input
-        onChange={onChange}
+        onInput={onInput}
         onBlur={onBlur}
         type={props.type}
         class={'form-control' + props.feedbackClass}

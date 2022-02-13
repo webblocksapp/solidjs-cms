@@ -1,1 +1,4 @@
-export type OmitBaseFieldProps<T> = Omit<T, 'status' | 'feedbackClass' | 'message'>;
+export type OmitBaseFieldProps<T> = Omit<
+  T,
+  'status' | 'feedbackClass' | 'message' | 'formHandlerOnChange' | 'formHandlerOnInput'
+>;

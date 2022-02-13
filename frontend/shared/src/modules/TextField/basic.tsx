@@ -1,11 +1,10 @@
-import { Component } from 'solid-js';
+import { Component, createEffect } from 'solid-js';
 import { TextField } from '@components';
 import { useFormHandler, yup } from '@utils';
-import { SchemaOf, ValidationError } from 'yup';
-import { CommonObject } from '@app-types';
+import { SchemaOf } from 'yup';
 
 type FormSchema = {
-  name: string;
+  email: string;
   age: number;
   contact: {
     email: string;
@@ -15,7 +14,7 @@ type FormSchema = {
 
 export const Basic: Component = () => {
   const schema: SchemaOf<FormSchema> = yup.object({
-    name: yup.string().required(),
+    email: yup.string().required().email(),
     age: yup.number().required(),
     contact: yup
       .object({
@@ -27,32 +26,14 @@ export const Basic: Component = () => {
 
   const formHandler = useFormHandler(schema);
 
-  const test = async () => {
-    try {
-      await schema.validate({ name: '' }, { abortEarly: false });
-    } catch (validationErrors) {
-      if (validationErrors instanceof ValidationError) {
-        const allErrors: CommonObject = {};
-        for (let validationError of validationErrors.inner) {
-          if (validationError.path === undefined) {
-            continue;
-          }
-          allErrors[validationError.path] = validationError.errors[0];
-        }
-      }
-    }
-  };
-
-  test();
-
   return (
     <div class="p-3">
       <TextField
+        name="email"
         label="Email"
         placeholder="mail@example.com"
         helperText="Don't share your email"
-        errorMessage="Email is invalid"
-        validMessage="Email is OK"
+        formHandler={formHandler}
       />
     </div>
   );

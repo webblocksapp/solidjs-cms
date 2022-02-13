@@ -1,13 +1,16 @@
-import { FeedbackStatus } from '@app-types';
+import { FeedbackStatus, FormHandler } from '@app-types';
 import { batch, Component, createEffect, createSignal, createUniqueId, mergeProps } from 'solid-js';
 
 export interface BaseFieldProps {
-  id?: string;
   errorMessage?: string;
-  validMessage?: string;
-  message?: string;
-  status?: FeedbackStatus;
   feedbackClass?: string;
+  formHandler?: FormHandler;
+  formHandlerOnInput: (value: any) => void;
+  id?: string;
+  message?: string;
+  name?: string;
+  status?: FeedbackStatus;
+  validMessage?: string;
 }
 
 export const withBaseField = <T,>(BaseComponent: Component<T>) => {
@@ -34,8 +37,26 @@ export const withBaseField = <T,>(BaseComponent: Component<T>) => {
       }
     };
 
+    const formHandlerOnInput = (value: any) => {
+      props.formHandler && props.formHandler.setFieldValue(props.name, value);
+    };
+
     createEffect(() => batch(() => computeFeedBack(props.errorMessage, props.validMessage)));
 
-    return <BaseComponent {...props} id={id} message={message()} status={status()} feedbackClass={feedbackClass()} />;
+    /**
+     * Computes the error feedback if a form handler has been assigned.
+     */
+    createEffect(() => batch(() => props.formHandler && computeFeedBack(props.formHandler.getFieldError(props.name))));
+
+    return (
+      <BaseComponent
+        {...props}
+        feedbackClass={feedbackClass()}
+        formHandlerOnInput={formHandlerOnInput}
+        id={id}
+        message={message()}
+        status={status()}
+      />
+    );
   };
 };
