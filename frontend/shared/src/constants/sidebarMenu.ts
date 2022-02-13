@@ -24,4 +24,9 @@ export const SIDEBAR_MENU: TreeMenu[] = [
     path: '/text-field',
     children: [{ label: 'Basic', path: '/text-field/basic' }],
   },
+  {
+    label: 'Select',
+    path: '/select',
+    children: [{ label: 'Basic', path: '/select/basic' }],
+  },
 ];

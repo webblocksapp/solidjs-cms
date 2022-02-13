@@ -9,7 +9,7 @@
     "esModuleInterop": true,
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
-    "types": ["vite/client", "bootstrap", "yup"],
+    "types": ["vite/client", "jquery", "bootstrap", "select2", "yup"],
     "paths": {
       "@app-types": ["app-types"],
       "@components": ["components"],

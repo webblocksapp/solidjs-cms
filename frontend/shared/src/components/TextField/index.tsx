@@ -1,15 +1,13 @@
-import { FormFieldComponent, InputElement, InputChangeEvent, InputFocusEvent } from '@app-types';
+import { FormFieldComponent, InputElement, InputFocusEvent } from '@app-types';
 import { HelperText, Input, Label, ValidationFeedback } from '@components';
 import { BaseFieldProps, withBaseField } from '@hocs';
 import { InputInputEvent } from 'app-types/InputInputEvent';
 import { Component } from 'solid-js';
 
 export interface TextFieldProps extends BaseFieldProps {
-  class?: string;
   label?: string;
   type?: InputElement['type'];
   placeholder?: InputElement['placeholder'];
-  helperText?: string;
   onInput?: (event: InputInputEvent) => void;
   onBlur?: (event: InputFocusEvent) => void;
 }
@@ -35,7 +33,7 @@ const BaseTextField: Component<TextFieldProps> = (props) => {
         onInput={onInput}
         onBlur={onBlur}
         type={props.type}
-        class={'form-control' + props.feedbackClass}
+        class={props.class + ' form-control ' + props.feedbackClass}
         id={props.id}
         placeholder={props.placeholder}
       />

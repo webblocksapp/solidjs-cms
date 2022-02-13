@@ -20,6 +20,10 @@ export const useFormHandler = <T extends CommonObject>(yupSchema: SchemaOf<T>, d
   };
 
   const validateField = async () => {
+    if (!path()) {
+      return;
+    }
+
     try {
       await yupSchema.validateAt(path(), formData);
       setFormErrors(path(), '');

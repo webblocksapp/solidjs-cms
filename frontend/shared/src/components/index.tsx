@@ -11,6 +11,7 @@ export * from './Link';
 export * from './List';
 export * from './ListItem';
 export * from './Navbar';
+export * from './Select';
 export * from './Sidebar';
 export * from './TextField';
 export * from './TreeMenu';

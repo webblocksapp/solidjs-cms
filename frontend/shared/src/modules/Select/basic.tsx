@@ -1,26 +1,28 @@
 import { Component } from 'solid-js';
-import { TextField } from '@components';
+import { Select } from '@components';
 import { useFormHandler, yup } from '@utils';
 import { SchemaOf } from 'yup';
 
 type FormSchema = {
-  email: string;
+  country: string;
 };
 
 export const Basic: Component = () => {
   const schema: SchemaOf<FormSchema> = yup.object({
-    email: yup.string().required().email(),
+    country: yup.string().required(),
   });
 
   const formHandler = useFormHandler(schema);
 
   return (
     <div class="p-3">
-      <TextField
-        name="email"
-        label="Email"
-        placeholder="mail@example.com"
-        helperText="Don't share your email"
+      <Select
+        label="Country"
+        name="country"
+        options={[
+          { value: 'CO', viewValue: 'Colombia' },
+          { value: 'AR', viewValue: 'Argentina' },
+        ]}
         formHandler={formHandler}
       />
     </div>

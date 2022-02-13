@@ -1,8 +1,6 @@
 import { render } from 'solid-js/web';
-
 import './index.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
+import './libs';
 import App from './App';
 import { Router } from 'solid-app-router';
 

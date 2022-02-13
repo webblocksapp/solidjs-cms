@@ -2,10 +2,15 @@ import { FeedbackStatus, FormHandler } from '@app-types';
 import { batch, Component, createEffect, createSignal, createUniqueId, mergeProps } from 'solid-js';
 
 export interface BaseFieldProps {
+  class?: string;
+  disabled?: boolean;
   errorMessage?: string;
   feedbackClass?: string;
   formHandler?: FormHandler;
   formHandlerOnInput: (value: any) => void;
+  formHandlerOnSelect: (value: any) => void;
+  formHandlerOnClear: () => void;
+  helperText?: string;
   id?: string;
   message?: string;
   name?: string;
@@ -41,6 +46,14 @@ export const withBaseField = <T,>(BaseComponent: Component<T>) => {
       props.formHandler && props.formHandler.setFieldValue(props.name, value);
     };
 
+    const formHandlerOnSelect = (value: any) => {
+      props.formHandler && props.formHandler.setFieldValue(props.name, value);
+    };
+
+    const formHandlerOnClear = () => {
+      props.formHandler && props.formHandler.setFieldValue(props.name, '');
+    };
+
     createEffect(() => batch(() => computeFeedBack(props.errorMessage, props.validMessage)));
 
     /**
@@ -53,6 +66,8 @@ export const withBaseField = <T,>(BaseComponent: Component<T>) => {
         {...props}
         feedbackClass={feedbackClass()}
         formHandlerOnInput={formHandlerOnInput}
+        formHandlerOnSelect={formHandlerOnSelect}
+        formHandlerOnClear={formHandlerOnClear}
         id={id}
         message={message()}
         status={status()}
