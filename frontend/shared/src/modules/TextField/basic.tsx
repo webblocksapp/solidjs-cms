@@ -13,7 +13,7 @@ export const Basic: Component = () => {
     email2: yup.string().required().email(),
   });
 
-  const formHandler = useFormHandler(schema);
+  const formHandler = useFormHandler(schema, { email: 'test@gmail.com' });
 
   return (
     <Grid container spacing={2}>

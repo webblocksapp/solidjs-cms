@@ -2,6 +2,7 @@
 export * from './BorderProps';
 export * from './BorderScale';
 export * from './ButtonElement';
+export * from './CheckboxInputEvent';
 export * from './ColSize';
 export * from './CommonObject';
 export * from './DeviceSize';

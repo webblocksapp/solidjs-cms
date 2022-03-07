@@ -1,6 +1,7 @@
 // @index('./**/index.tsx', f => `export * from '${f.path.replace(/\/index$/, '')}'`)
 export * from './Box';
 export * from './Button';
+export * from './Checkboxes';
 export * from './Collapse';
 export * from './Content';
 export * from './Grid';

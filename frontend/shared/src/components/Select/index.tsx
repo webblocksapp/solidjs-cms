@@ -1,14 +1,18 @@
 import { Component, onMount, For, createEffect, splitProps, mergeProps } from 'solid-js';
 import { BaseFieldProps, withBaseField } from '@hocs';
 import { Box, HelperText, Label, ValidationFeedback } from '@components';
-import { FormFieldComponent, Select2ClearEvent, Select2SelectEvent, Select2CloseEvent } from '@app-types';
+import {
+  SelectableOption,
+  FormFieldComponent,
+  Select2ClearEvent,
+  Select2SelectEvent,
+  Select2CloseEvent,
+} from '@app-types';
 import { Options as Select2Props } from 'select2';
 import { SELECT2_OPTIONS } from '@constants';
-import { SelectableOption } from 'app-types/SelectableOption';
 import $ from 'jquery';
 
 export interface SelectProps extends Select2Props, BaseFieldProps {
-  label?: string;
   search?: boolean;
   options: SelectableOption[];
   onSelect?: (event: Select2SelectEvent) => void;

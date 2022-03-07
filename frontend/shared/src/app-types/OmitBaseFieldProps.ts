@@ -9,4 +9,5 @@ export type OmitBaseFieldProps<T> = Omit<
   | 'formHandlerOnClear'
   | 'formHandlerOnBlur'
   | 'formHandlerOnClose'
+  | 'setValue'
 >;

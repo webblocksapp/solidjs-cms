@@ -58,6 +58,11 @@ export const useFormHandler = <T extends CommonObject>(yupSchema: SchemaOf<T>, d
     }
   };
 
+  const getFieldValue = (path: string = '') => {
+    if (!path) return;
+    return formData[path];
+  };
+
   const getFormData = () => {
     return formData as T;
   };
@@ -72,6 +77,7 @@ export const useFormHandler = <T extends CommonObject>(yupSchema: SchemaOf<T>, d
     setFieldValue,
     getFormData,
     getFieldError,
+    getFieldValue,
     validate,
   };
 };

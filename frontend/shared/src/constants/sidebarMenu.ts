@@ -29,4 +29,9 @@ export const SIDEBAR_MENU: TreeMenu[] = [
     path: '/select',
     children: [{ label: 'Basic', path: '/select/basic' }],
   },
+  {
+    label: 'Checkboxes',
+    path: '/checkboxes',
+    children: [{ label: 'Basic', path: '/checkboxes/basic' }],
+  },
 ];

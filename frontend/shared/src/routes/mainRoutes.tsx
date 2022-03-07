@@ -5,11 +5,19 @@ import { textFieldRoutes } from './textFieldRoutes';
 import { collapseRoutes } from './collapseRoutes';
 import { gridRoutes } from './gridRoutes';
 import { selectRoutes } from './selectRoutes';
+import { checkboxesRoutes } from './checkboxesRoutes';
 
 export const mainRoutes: RouteDefinition[] = [
   {
     path: '',
     component: MainLayout,
-    children: [...boxRoutes, ...textFieldRoutes, ...collapseRoutes, ...gridRoutes, ...selectRoutes],
+    children: [
+      ...boxRoutes,
+      ...textFieldRoutes,
+      ...collapseRoutes,
+      ...gridRoutes,
+      ...selectRoutes,
+      ...checkboxesRoutes,
+    ],
   },
 ];

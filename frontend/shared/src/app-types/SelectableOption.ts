@@ -1,4 +1,5 @@
 export type SelectableOption = {
-  value?: string | number;
+  value: string | number;
   viewValue: string;
+  checked?: boolean;
 };

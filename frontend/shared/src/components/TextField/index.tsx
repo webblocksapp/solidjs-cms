@@ -5,7 +5,6 @@ import { InputInputEvent } from 'app-types/InputInputEvent';
 import { Component } from 'solid-js';
 
 export interface TextFieldProps extends BaseFieldProps {
-  label?: string;
   type?: InputElement['type'];
   placeholder?: InputElement['placeholder'];
   onInput?: (event: InputInputEvent) => void;
@@ -37,6 +36,7 @@ const BaseTextField: Component<TextFieldProps> = (props) => {
         class={props.class + ' form-control ' + props.feedbackClass}
         id={props.id}
         placeholder={props.placeholder}
+        value={props.value}
       />
       {props.helperText && <HelperText>{props.helperText}</HelperText>}
       <ValidationFeedback status={props.status} message={props.message} />
