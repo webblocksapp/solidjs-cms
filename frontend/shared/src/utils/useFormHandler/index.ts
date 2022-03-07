@@ -8,7 +8,10 @@ export const useFormHandler = <T extends CommonObject>(yupSchema: SchemaOf<T>, d
   const [formErrors, setFormErrors] = createStore<CommonObject>({});
   const [path, setPath] = createSignal<string>('');
 
-  const setFieldValue = async (path: string = '', value: any, validate: boolean = true) => {
+  /**
+   * Sets an specific field value of the form data according to the given path.
+   */
+  const setFieldValue = async (path: string = '', value: any) => {
     if (!path) {
       return;
     }
@@ -19,11 +22,10 @@ export const useFormHandler = <T extends CommonObject>(yupSchema: SchemaOf<T>, d
     });
   };
 
+  /**
+   * Validates a single field of the form.
+   */
   const validateField = async () => {
-    if (!path()) {
-      return;
-    }
-
     try {
       await yupSchema.validateAt(path(), formData);
       setFormErrors(path(), '');
@@ -36,9 +38,12 @@ export const useFormHandler = <T extends CommonObject>(yupSchema: SchemaOf<T>, d
     }
   };
 
+  /**
+   * Validates the whole form data.
+   */
   const validate = async () => {
     try {
-      await yupSchema.validate({ name: '' }, { abortEarly: false });
+      await yupSchema.validate(formData, { abortEarly: false });
     } catch (validationErrors) {
       if (validationErrors instanceof ValidationError) {
         const allErrors: CommonObject = {};

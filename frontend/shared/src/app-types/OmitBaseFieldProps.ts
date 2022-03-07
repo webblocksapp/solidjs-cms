@@ -7,4 +7,6 @@ export type OmitBaseFieldProps<T> = Omit<
   | 'formHandlerOnInput'
   | 'formHandlerOnSelect'
   | 'formHandlerOnClear'
+  | 'formHandlerOnBlur'
+  | 'formHandlerOnClose'
 >;

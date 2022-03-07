@@ -1,3 +1,3 @@
-import { DataParams } from 'select2';
+import { Event, DataParams } from 'select2';
 
-export type Select2SelectEvent = Event & { params: DataParams };
+export type Select2SelectEvent = Event<HTMLSelectElement, DataParams>;

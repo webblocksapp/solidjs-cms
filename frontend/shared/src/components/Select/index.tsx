@@ -1,7 +1,7 @@
 import { Component, onMount, For, createEffect, splitProps, mergeProps } from 'solid-js';
 import { BaseFieldProps, withBaseField } from '@hocs';
 import { Box, HelperText, Label, ValidationFeedback } from '@components';
-import { FormFieldComponent, Select2ClearEvent, Select2SelectEvent } from '@app-types';
+import { FormFieldComponent, Select2ClearEvent, Select2SelectEvent, Select2CloseEvent } from '@app-types';
 import { Options as Select2Props } from 'select2';
 import { SELECT2_OPTIONS } from '@constants';
 import { SelectableOption } from 'app-types/SelectableOption';
@@ -13,6 +13,7 @@ export interface SelectProps extends Select2Props, BaseFieldProps {
   options: SelectableOption[];
   onSelect?: (event: Select2SelectEvent) => void;
   onClear?: (event: Select2ClearEvent) => void;
+  onClose?: (event: Select2CloseEvent) => void;
 }
 
 const BaseSelect: Component<SelectProps> = (props) => {
@@ -42,7 +43,6 @@ const BaseSelect: Component<SelectProps> = (props) => {
      * Initializes select2 select event
      */
     $(select).on('select2:select', (event) => {
-      props.formHandlerOnSelect(event.params.data.id);
       onSelect(event);
     });
 
@@ -50,17 +50,46 @@ const BaseSelect: Component<SelectProps> = (props) => {
      * Initializes select2 clear event
      */
     $(select).on('select2:clear', (event) => {
-      props.formHandlerOnClear();
       onClear(event);
+    });
+
+    /**
+     * Initializes select2 close event
+     */
+    $(select).on('select2:close', (event) => {
+      onClose(event);
     });
   };
 
   const onSelect = (event: Select2SelectEvent) => {
+    props.formHandlerOnSelect(getData());
     props.onSelect && props.onSelect(event);
   };
 
   const onClear = (event: Select2ClearEvent) => {
+    props.formHandlerOnClear();
     props.onClear && props.onClear(event);
+  };
+
+  const onClose = (event: Select2CloseEvent) => {
+    !getData() && props.formHandlerOnClose(getData());
+    props.onClose && props.onClose(event);
+  };
+
+  /**
+   * Returns the current selected data from select2 component.
+   */
+  const getData = () => {
+    if (!select) return null;
+
+    const data = $(select).select2('data');
+
+    if (props.multiple) {
+      return data.length ? data.map((option) => option.id) : null;
+    } else {
+      const option = data[0] || null;
+      return option.id;
+    }
   };
 
   const appendInvalidClass = () => {

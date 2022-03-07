@@ -9,7 +9,9 @@ export interface BaseFieldProps {
   formHandler?: FormHandler;
   formHandlerOnInput: (value: any) => void;
   formHandlerOnSelect: (value: any) => void;
+  formHandlerOnBlur: (value: any) => void;
   formHandlerOnClear: () => void;
+  formHandlerOnClose: (value: any) => void;
   helperText?: string;
   id?: string;
   message?: string;
@@ -54,6 +56,14 @@ export const withBaseField = <T,>(BaseComponent: Component<T>) => {
       props.formHandler && props.formHandler.setFieldValue(props.name, '');
     };
 
+    const formHandlerOnBlur = (value: any) => {
+      props.formHandler && props.formHandler.setFieldValue(props.name, value);
+    };
+
+    const formHandlerOnClose = (value: any) => {
+      props.formHandler && props.formHandler.setFieldValue(props.name, value);
+    };
+
     createEffect(() => batch(() => computeFeedBack(props.errorMessage, props.validMessage)));
 
     /**
@@ -68,6 +78,8 @@ export const withBaseField = <T,>(BaseComponent: Component<T>) => {
         formHandlerOnInput={formHandlerOnInput}
         formHandlerOnSelect={formHandlerOnSelect}
         formHandlerOnClear={formHandlerOnClear}
+        formHandlerOnBlur={formHandlerOnBlur}
+        formHandlerOnClose={formHandlerOnClose}
         id={id}
         message={message()}
         status={status()}

@@ -19,6 +19,7 @@ const BaseTextField: Component<TextFieldProps> = (props) => {
   };
 
   const onBlur = (event: InputFocusEvent) => {
+    props.formHandlerOnBlur(event.currentTarget.value);
     props.onBlur && props.onBlur(event);
   };
 

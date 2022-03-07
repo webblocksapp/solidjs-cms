@@ -27,6 +27,7 @@ export * from './Position';
 export * from './PositionScale';
 export * from './PositionsProps';
 export * from './Select2ClearEvent';
+export * from './Select2CloseEvent';
 export * from './Select2SelectEvent';
 export * from './SelectableOption';
 export * from './ShadowsProps';
