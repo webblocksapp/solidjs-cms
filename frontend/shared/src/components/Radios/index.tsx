@@ -1,30 +1,38 @@
 import { CheckboxInputEvent, FormFieldComponent, SelectableOption } from '@app-types';
-import { BaseFieldProps, withBaseField } from '@hocs';
-import { Component, For, onMount } from 'solid-js';
 import { Box, Input, Label, ValidationFeedback } from '@components';
+import { BaseFieldProps, withBaseField } from '@hocs';
+import { Component, For, onMount, batch } from 'solid-js';
 import { createStore } from 'solid-js/store';
 
-export interface CheckboxesProps extends BaseFieldProps {
+export interface RadiosProps extends BaseFieldProps {
   options: SelectableOption[];
-  value?: Array<any>;
   onChange?: (event: CheckboxInputEvent) => void;
 }
 
-export const BaseCheckboxes: Component<CheckboxesProps> = (props) => {
+const BaseRadios: Component<RadiosProps> = (props) => {
   const [store, setStore] = createStore<{ options: SelectableOption[] }>({ options: [...props.options] });
 
   const toggleCheck = (value: any) => {
-    setStore(
-      'options',
-      (item) => item.value == value,
-      'checked',
-      (checked) => !checked
-    );
+    batch(() => {
+      setStore(
+        'options',
+        (item) => item.value == value,
+        'checked',
+        () => true
+      );
+
+      setStore(
+        'options',
+        (item) => item.value != value,
+        'checked',
+        () => false
+      );
+    });
   };
 
   const onChange = (event: CheckboxInputEvent) => {
-    const value = computeValues(event);
-    toggleCheck(event.currentTarget.value);
+    const value = event.currentTarget.value;
+    toggleCheck(value);
     props.formHandlerOnChange(value);
     props.onChange && props.onChange(event);
   };
@@ -32,32 +40,13 @@ export const BaseCheckboxes: Component<CheckboxesProps> = (props) => {
   /**
    * Initializes the checked values when the component is mounted if a value prop is given.
    */
-  const initCheckedValues = () => {
-    if (!props.value?.length) return;
-
-    props.value.forEach((item) => {
-      toggleCheck(item);
-    });
-  };
-
-  /**
-   * Generates the array of values according to the checked values on the checkboxes.
-   */
-  const computeValues = (event: CheckboxInputEvent) => {
-    let currentValues = [...(props?.value || [])];
-
-    if (event.currentTarget.checked) {
-      currentValues.push(event.currentTarget.value);
-    } else {
-      currentValues = currentValues.filter((value) => value != event.currentTarget.value);
-    }
-
-    props.setValue(currentValues);
-    return currentValues;
+  const initCheckedValue = () => {
+    if (!props.value) return;
+    toggleCheck(props.value);
   };
 
   onMount(() => {
-    initCheckedValues();
+    initCheckedValue();
   });
 
   return (
@@ -72,7 +61,7 @@ export const BaseCheckboxes: Component<CheckboxesProps> = (props) => {
                 id={`${props.id}-${index()}`}
                 name={props.name}
                 onChange={onChange}
-                type="checkbox"
+                type="radio"
                 value={item.value}
               />
               <Label class="form-check-label" for={`${props.id}-${index()}`}>
@@ -87,4 +76,4 @@ export const BaseCheckboxes: Component<CheckboxesProps> = (props) => {
   );
 };
 
-export const Checkboxes = withBaseField(BaseCheckboxes) as FormFieldComponent<CheckboxesProps>;
+export const Radios = withBaseField(BaseRadios) as FormFieldComponent<RadiosProps>;

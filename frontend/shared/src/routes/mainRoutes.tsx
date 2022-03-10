@@ -6,6 +6,7 @@ import { collapseRoutes } from './collapseRoutes';
 import { gridRoutes } from './gridRoutes';
 import { selectRoutes } from './selectRoutes';
 import { checkboxesRoutes } from './checkboxesRoutes';
+import { radiosRoutes } from './radiosRoutes';
 
 export const mainRoutes: RouteDefinition[] = [
   {
@@ -18,6 +19,7 @@ export const mainRoutes: RouteDefinition[] = [
       ...gridRoutes,
       ...selectRoutes,
       ...checkboxesRoutes,
+      ...radiosRoutes,
     ],
   },
 ];

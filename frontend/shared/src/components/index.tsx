@@ -12,6 +12,7 @@ export * from './Link';
 export * from './List';
 export * from './ListItem';
 export * from './Navbar';
+export * from './Radios';
 export * from './Select';
 export * from './Sidebar';
 export * from './TextField';
