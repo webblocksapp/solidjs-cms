@@ -1,50 +1,23 @@
-import { Component, createEffect, createSignal, mergeProps } from 'solid-js';
-import { PositionsProps, Style } from '@app-types';
-import { useMergeStyle } from '@utils';
+import { Component, createEffect } from 'solid-js';
+import { CssClassProps, PositionsProps, Style } from '@app-types';
+import { useMergeClassList, useMergeStyle } from '@utils';
 
-export const withPosition = <T extends { class?: string; style?: Style }>(BaseComponent: Component<T>) => {
+export const withPosition = <T extends CssClassProps & { style?: Style }>(BaseComponent: Component<T>) => {
   return (props: T & PositionsProps) => {
-    const [positionClass, setPositionClass] = createSignal<string>('');
-    const [topClass, setTopClass] = createSignal<string>('');
-    const [rightClass, setRightClass] = createSignal<string>('');
-    const [bottomClass, setBottomClass] = createSignal<string>('');
-    const [leftClass, setLeftClass] = createSignal<string>('');
     const { style, mergeStyle } = useMergeStyle();
-    props = mergeProps({ class: '' }, props);
+    const { classList, mergeClassList } = useMergeClassList();
 
-    const computePositionClass = (position?: PositionsProps['position']) => {
-      setPositionClass(() => (position ? ` position-${position} ` : ''));
-    };
-
-    const computeTopClass = (top?: PositionsProps['top']) => {
-      setTopClass(() => (top ? ` top-${top} ` : ''));
-    };
-
-    const computeRightClass = (right?: PositionsProps['right']) => {
-      setRightClass(() => (right ? ` end-${right} ` : ''));
-    };
-
-    const computeBottomClass = (bottom?: PositionsProps['bottom']) => {
-      setBottomClass(() => (bottom ? ` bottom-${bottom} ` : ''));
-    };
-
-    const computeLeftClass = (left?: PositionsProps['left']) => {
-      setLeftClass(() => (left ? ` left-${left} ` : ''));
-    };
-
-    createEffect(() => computePositionClass(props.position));
-    createEffect(() => computeTopClass(props.top));
-    createEffect(() => computeRightClass(props.right));
-    createEffect(() => computeBottomClass(props.bottom));
-    createEffect(() => computeLeftClass(props.left));
     createEffect(() => mergeStyle(props.style, { 'z-index': props.zIndex }));
-
-    return (
-      <BaseComponent
-        {...props}
-        style={style()}
-        class={props.class + positionClass() + topClass() + rightClass() + bottomClass() + leftClass()}
-      />
+    createEffect(() =>
+      mergeClassList(props.classList, {
+        'position-static': props.position === 'static',
+        'position-relative': props.position === 'relative',
+        'position-absolute': props.position === 'absolute',
+        'position-fixed': props.position === 'fixed',
+        'position-sticky': props.position === 'sticky',
+      })
     );
+
+    return <BaseComponent {...props} style={style()} classList={classList()} />;
   };
 };

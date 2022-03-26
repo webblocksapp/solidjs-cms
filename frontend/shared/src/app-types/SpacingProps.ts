@@ -1,7 +1,7 @@
 import { SpacingScale } from '@app-types';
 
 export interface SpacingProps {
-  m?: SpacingScale;
+  m?: SpacingScale | 'auto';
   mt?: SpacingScale;
   mr?: SpacingScale;
   mb?: SpacingScale;
@@ -15,18 +15,18 @@ export interface SpacingProps {
   pl?: SpacingScale;
   px?: SpacingScale;
   py?: SpacingScale;
-  margin?: SpacingScale;
+  margin?: SpacingScale | 'auto';
   marginTop?: SpacingScale;
   marginRight?: SpacingScale;
   marginBottom?: SpacingScale;
   marginLeft?: SpacingScale;
-  marginX?: SpacingScale;
-  marginY?: SpacingScale;
-  padding?: SpacingScale;
+  marginX?: SpacingScale | 'auto';
+  marginY?: SpacingScale | 'auto';
+  padding?: SpacingScale | 'auto';
   paddingTop?: SpacingScale;
   paddingRight?: SpacingScale;
   paddingBottom?: SpacingScale;
   paddingLeft?: SpacingScale;
-  paddingX?: SpacingScale;
-  paddingY?: SpacingScale;
+  paddingX?: SpacingScale | 'auto';
+  paddingY?: SpacingScale | 'auto';
 }

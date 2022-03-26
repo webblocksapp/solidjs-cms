@@ -1,23 +1,38 @@
-import { Component, createSignal, createEffect, mergeProps } from 'solid-js';
-import { PaletteProps } from '@app-types';
+import { Component, createEffect } from 'solid-js';
+import { CssClassProps, PaletteProps } from '@app-types';
+import { useMergeClassList } from '@utils';
 
-export const withPalette = <T extends { class?: string }>(BaseComponent: Component<T>) => {
+export const withPalette = <T extends CssClassProps>(BaseComponent: Component<T>) => {
   return (props: T & PaletteProps) => {
-    const [bgcolorClass, setBgcolorClass] = createSignal<string>('');
-    const [colorClass, setColorClass] = createSignal<string>();
-    props = mergeProps({ class: '' }, props);
+    const { classList, mergeClassList } = useMergeClassList();
 
-    const computeBgcolorClass = (value?: PaletteProps['bgcolor']) => {
-      setBgcolorClass(() => (value ? ` bg-${value} ` : ''));
-    };
+    createEffect(() =>
+      mergeClassList(props.classList, {
+        'bg-body': props.bgcolor === 'body',
+        'bg-danger': props.bgcolor === 'danger',
+        'bg-dark': props.bgcolor === 'dark',
+        'bg-info': props.bgcolor === 'info',
+        'bg-light': props.bgcolor === 'light',
+        'bg-primary': props.bgcolor === 'primary',
+        'bg-secondary': props.bgcolor === 'secondary',
+        'bg-success': props.bgcolor === 'success',
+        'bg-transparent': props.bgcolor === 'transparent',
+        'bg-warning': props.bgcolor === 'warning',
+        'bg-white': props.bgcolor === 'white',
+        'text-body': props.color === 'body',
+        'text-danger': props.color === 'danger',
+        'text-dark': props.color === 'dark',
+        'text-info': props.color === 'info',
+        'text-light': props.color === 'light',
+        'text-muted': props.color === 'muted',
+        'text-primary': props.color === 'primary',
+        'text-secondary': props.color === 'secondary',
+        'text-success': props.color === 'success',
+        'text-warning': props.color === 'warning',
+        'text-white': props.color === 'white',
+      })
+    );
 
-    const computeColorClass = (value?: PaletteProps['color']) => {
-      setColorClass(() => (value ? ` text-${value} ` : ''));
-    };
-
-    createEffect(() => computeBgcolorClass(props.bgcolor));
-    createEffect(() => computeColorClass(props.color));
-
-    return <BaseComponent {...props} class={props.class + bgcolorClass() + colorClass()} />;
+    return <BaseComponent {...props} classList={classList()} />;
   };
 };

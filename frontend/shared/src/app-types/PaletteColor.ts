@@ -9,4 +9,5 @@ export type PaletteColor =
   | 'dark'
   | 'body'
   | 'white'
-  | 'transparent';
+  | 'transparent'
+  | 'muted';

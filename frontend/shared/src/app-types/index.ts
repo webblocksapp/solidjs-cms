@@ -5,6 +5,7 @@ export * from './ButtonElement';
 export * from './CheckboxInputEvent';
 export * from './ColSize';
 export * from './CommonObject';
+export * from './CssClassProps';
 export * from './DeviceSize';
 export * from './DisplayProps';
 export * from './DivElement';

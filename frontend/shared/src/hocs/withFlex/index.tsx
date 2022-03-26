@@ -1,81 +1,53 @@
-import { Component, createEffect, createSignal, mergeProps } from 'solid-js';
-import { FlexboxProps } from '@app-types';
+import { Component, createEffect } from 'solid-js';
+import { CssClassProps, FlexboxProps } from '@app-types';
+import { useMergeClassList } from '@utils';
 
-export const withFlex = <T extends { class?: string }>(BaseComponent: Component<T>) => {
+export const withFlex = <T extends CssClassProps>(BaseComponent: Component<T>) => {
   return (props: T & FlexboxProps) => {
-    const [flexDirectionClass, setFlexDirectionClass] = createSignal<string>('');
-    const [flexWrapClass, setFlexWrapClass] = createSignal<string>('');
-    const [justifyContentClass, setJustifyContentClass] = createSignal<string>('');
-    const [alignItemsClass, setAlignItemsClass] = createSignal<string>('');
-    const [alignContentClass, setAlignContentClass] = createSignal<string>('');
-    const [orderClass, setOrderClass] = createSignal<string>('');
-    const [flexGrowClass, setFlexGrowClass] = createSignal<string>('');
-    const [flexShrinkClass, setFlexShrinkClass] = createSignal<string>('');
-    const [alignSelfClass, setAlignSelfClass] = createSignal<string>('');
-    props = mergeProps({ class: '' }, props);
+    const { classList, mergeClassList } = useMergeClassList();
 
-    const computeFlexDirectionClass = (flexDirection?: FlexboxProps['flexDirection']) => {
-      setFlexDirectionClass(() => (flexDirection ? ` flex-${flexDirection} ` : ''));
-    };
-
-    const computeFlexWrapClass = (flexWrap?: FlexboxProps['flexWrap']) => {
-      setFlexWrapClass(() => (flexWrap ? ` flex-${flexWrap} ` : ''));
-    };
-
-    const computeJustifyContentClass = (justifyContent?: FlexboxProps['justifyContent']) => {
-      setJustifyContentClass(() => (justifyContent ? ` justify-content-${justifyContent} ` : ''));
-    };
-
-    const computeAlignItemsClass = (alignItems?: FlexboxProps['alignItems']) => {
-      setAlignItemsClass(() => (alignItems ? ` align-items-${alignItems} ` : ''));
-    };
-
-    const computeAlignContentClass = (alignContent?: FlexboxProps['alignContent']) => {
-      setAlignContentClass(() => (alignContent ? ` align-content-${alignContent} ` : ''));
-    };
-
-    const computeOrderClass = (order?: FlexboxProps['order']) => {
-      setOrderClass(() => (order ? ` order-${order} ` : ''));
-    };
-
-    const computeFlexGrowClass = (flexGrow?: FlexboxProps['flexGrow']) => {
-      setFlexGrowClass(() => (flexGrow ? ` flex-grow-${flexGrow} ` : ''));
-    };
-
-    const computeFlexShrinkClass = (flexShrink?: FlexboxProps['flexShrink']) => {
-      setFlexShrinkClass(() => (flexShrink ? ` flex-shrink-${flexShrink} ` : ''));
-    };
-
-    const computeAlignSelfClass = (alignSelf?: FlexboxProps['alignSelf']) => {
-      setAlignSelfClass(() => (alignSelf ? ` align-self-${alignSelf} ` : ''));
-    };
-
-    createEffect(() => computeFlexDirectionClass(props.flexDirection));
-    createEffect(() => computeFlexWrapClass(props.flexWrap));
-    createEffect(() => computeJustifyContentClass(props.justifyContent));
-    createEffect(() => computeAlignItemsClass(props.alignItems));
-    createEffect(() => computeAlignContentClass(props.alignContent));
-    createEffect(() => computeOrderClass(props.order));
-    createEffect(() => computeFlexGrowClass(props.flexGrow));
-    createEffect(() => computeFlexShrinkClass(props.flexShrink));
-    createEffect(() => computeAlignSelfClass(props.alignSelf));
-
-    return (
-      <BaseComponent
-        {...props}
-        class={
-          props.class +
-          flexDirectionClass() +
-          flexWrapClass() +
-          justifyContentClass() +
-          alignItemsClass() +
-          alignContentClass() +
-          orderClass() +
-          flexGrowClass() +
-          flexShrinkClass() +
-          alignSelfClass()
-        }
-      />
+    createEffect(() =>
+      mergeClassList(props.classList, {
+        'align-content-around': props.alignContent === 'space-around',
+        'align-content-center': props.alignContent === 'center',
+        'align-content-end': props.alignContent === 'flex-end' || props.alignContent === 'end',
+        'align-content-start': props.alignContent === 'flex-start' || props.alignContent === 'start',
+        'align-content-stretch': props.alignContent === 'stretch',
+        'align-items-baseline': props.alignItems === 'baseline',
+        'align-items-center': props.alignItems === 'center',
+        'align-items-end': props.alignItems === 'flex-end' || props.alignItems === 'end',
+        'align-items-start': props.alignItems === 'flex-start' || props.alignItems === 'start',
+        'align-items-stretch': props.alignItems === 'stretch',
+        'align-self-baseline': props.alignSelf === 'baseline',
+        'align-self-center': props.alignSelf === 'center',
+        'align-self-end': props.alignSelf === 'self-end' || props.alignSelf === 'end',
+        'align-self-start': props.alignSelf === 'self-start' || props.alignSelf === 'start',
+        'align-self-stretch': props.alignSelf === 'stretch',
+        'flex-column-reverse': props.flexDirection === 'column-reverse',
+        'flex-column': props.flexDirection === 'column',
+        'flex-grow-0': props.flexGrow == 0,
+        'flex-grow-1': props.flexGrow == 1,
+        'flex-nowrap': props.flexWrap === 'nowrap',
+        'flex-row-reverse': props.flexDirection === 'row-reverse',
+        'flex-row': props.flexDirection === 'row',
+        'flex-shrink-0': props.flexShrink == 0,
+        'flex-shrink-1': props.flexShrink == 1,
+        'flex-wrap-reverse': props.flexWrap === 'wrap-reverse',
+        'flex-wrap': props.flexWrap === 'wrap',
+        'justify-content-around': props.justifyContent === 'space-around',
+        'justify-content-between': props.justifyContent === 'space-between',
+        'justify-content-center': props.justifyContent === 'center',
+        'justify-content-end': props.justifyContent === 'flex-end' || props.justifyContent === 'end',
+        'justify-content-evenly': props.justifyContent === 'space-evenly',
+        'justify-content-start': props.justifyContent === 'flex-start' || props.justifyContent === 'start',
+        'order-1': props.order == 1,
+        'order-2': props.order == 2,
+        'order-3': props.order == 3,
+        'order-first': props.order == -1,
+        'order-last': props.order == 6,
+      })
     );
+
+    return <BaseComponent {...props} classList={classList()} />;
   };
 };

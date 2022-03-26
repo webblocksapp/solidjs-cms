@@ -1,46 +1,28 @@
-import { Component, createEffect, createSignal, mergeProps } from 'solid-js';
+import { Component, createEffect } from 'solid-js';
 import { SizingProps, Style } from '@app-types';
-import { isBs5Size, parseSize, useMergeStyle } from '@utils';
+import { parseSize, useMergeStyle } from '@utils';
 
 export const withSizing = <T extends { class?: string; style?: Style }>(BaseComponent: Component<T>) => {
   return (props: T & SizingProps) => {
-    const [widthClass, setWidthClass] = createSignal<string>('');
-    const [fullHeightClass, setFullHeightClass] = createSignal<string>('');
-    const [fullWidthClass, setFullWidthClass] = createSignal<string>('');
     const { style, mergeStyle } = useMergeStyle();
-    props = mergeProps({ class: '' }, props);
 
-    const computeWidth = (width?: SizingProps['width']) => {
-      let className: string = '';
-
-      if (width === undefined) {
-        return;
-      } else if (typeof width === 'string' && isBs5Size(width)) {
-        className = ` w-${width.replace('%', '')} `;
-      } else {
-        mergeStyle(props.style, { width: parseSize(width) });
-      }
-      setWidthClass(className);
+    const fullHeight = () => {
+      return props.fullHeight ? '100%' : undefined;
     };
 
-    const computeFullHeightClass = (flag?: boolean) => {
-      setFullHeightClass(() => (flag ? ' h-100 ' : ''));
+    const fullWidth = () => {
+      return props.fullWidth ? '100%' : undefined;
     };
 
-    const computeFullWidthClass = (flag?: boolean) => {
-      setFullWidthClass(() => (flag ? ' w-100 ' : ''));
-    };
-
-    createEffect(() => computeWidth(props.width));
-    createEffect(() => computeFullHeightClass(props.fullHeight));
-    createEffect(() => computeFullWidthClass(props.fullWidth));
-
-    return (
-      <BaseComponent
-        {...props}
-        class={props.class + widthClass() + fullHeightClass() + fullWidthClass()}
-        style={style()}
-      />
+    createEffect(() =>
+      mergeStyle(props.style, {
+        width: fullWidth() || parseSize(props.width),
+        height: fullHeight() || parseSize(props.height),
+        maxWidth: parseSize(props.maxWidth),
+        maxHeight: parseSize(props.maxHeight),
+      })
     );
+
+    return <BaseComponent {...props} style={style()} />;
   };
 };

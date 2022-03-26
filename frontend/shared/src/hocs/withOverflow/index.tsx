@@ -1,17 +1,20 @@
-import { OverflowProps } from '@app-types';
-import { Component, createEffect, createSignal, mergeProps } from 'solid-js';
+import { CssClassProps, OverflowProps } from '@app-types';
+import { useMergeClassList } from '@utils';
+import { Component, createEffect } from 'solid-js';
 
-export const withOverflow = <T extends { class?: string }>(BaseComponent: Component<T>) => {
+export const withOverflow = <T extends CssClassProps>(BaseComponent: Component<T>) => {
   return (props: T & OverflowProps) => {
-    const [overflowClass, setOverflowClass] = createSignal<string>('');
-    props = mergeProps({ class: '' }, props);
+    const { classList, mergeClassList } = useMergeClassList();
 
-    const computeOverflowClass = (value?: OverflowProps['overflow']) => {
-      setOverflowClass(() => (value ? ` overflow-${value} ` : ''));
-    };
+    createEffect(() =>
+      mergeClassList(props.classList, {
+        'overflow-auto': props.overflow == 'auto',
+        'overflow-hidden': props.overflow == 'hidden',
+        'overflow-visible': props.overflow == 'visible',
+        'overflow-scroll': props.overflow == 'scroll',
+      })
+    );
 
-    createEffect(() => computeOverflowClass(props.overflow));
-
-    return <BaseComponent {...props} class={props.class + overflowClass()} />;
+    return <BaseComponent {...props} classList={classList()} />;
   };
 };

@@ -1,17 +1,26 @@
-import { Component, createSignal, createEffect, mergeProps } from 'solid-js';
-import { DisplayProps } from '@app-types';
+import { Component, createEffect } from 'solid-js';
+import { CssClassProps, DisplayProps } from '@app-types';
+import { useMergeClassList } from '@utils';
 
-export const withDisplay = <T extends { class?: string }>(BaseComponent: Component<T>) => {
+export const withDisplay = <T extends CssClassProps>(BaseComponent: Component<T>) => {
   return (props: T & DisplayProps) => {
-    const [displayClass, setDisplayClass] = createSignal<string>('');
-    props = mergeProps({ class: '' }, props);
+    const { classList, mergeClassList } = useMergeClassList();
 
-    const computeDisplayClass = (display?: DisplayProps['display']) => {
-      setDisplayClass(() => (display ? ` d-${display} ` : ''));
-    };
+    createEffect(() =>
+      mergeClassList(props.classList, {
+        'd-block': props.display === 'block',
+        'd-flex': props.display === 'flex',
+        'd-grid': props.display === 'grid',
+        'd-none': props.display === 'none',
+        'd-inline': props.display === 'inline',
+        'd-inline-block': props.display === 'inline-block',
+        'd-table': props.display === 'table',
+        'd-table-cell': props.display === 'table-cell',
+        'd-table-row': props.display === 'table-row',
+        'd-inline-flex': props.display === 'inline-flex',
+      })
+    );
 
-    createEffect(() => computeDisplayClass(props.display));
-
-    return <BaseComponent {...props} class={props.class + displayClass()} />;
+    return <BaseComponent {...props} classList={classList()} />;
   };
 };

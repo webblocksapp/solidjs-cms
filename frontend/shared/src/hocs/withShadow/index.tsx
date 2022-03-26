@@ -1,30 +1,20 @@
-import { Component, createEffect, createSignal, mergeProps } from 'solid-js';
-import { ShadowsProps } from '@app-types';
+import { Component, createEffect } from 'solid-js';
+import { CssClassProps, ShadowsProps } from '@app-types';
+import { useMergeClassList } from '@utils';
 
-export const withShadow = <T extends { class?: string }>(BaseComponent: Component<T>) => {
+export const withShadow = <T extends CssClassProps>(BaseComponent: Component<T>) => {
   return (props: T & ShadowsProps) => {
-    const [boxShadowClass, setBoxShadowClass] = createSignal<string>('');
-    props = mergeProps({ class: '' }, props);
+    const { classList, mergeClassList } = useMergeClassList();
 
-    const computeBoxShadowClass = (scale: ShadowsProps['boxShadow']) => {
-      setBoxShadowClass(() => {
-        switch (scale) {
-          case 0:
-            return ' shadow-none ';
-          case 1:
-            return ' shadow-sm ';
-          case 2:
-            return ' shadow ';
-          case 3:
-            return ' shadow-lg ';
-          default:
-            return '';
-        }
-      });
-    };
+    createEffect(() =>
+      mergeClassList(props.classList, {
+        'shadow-none': props.boxShadow == 0,
+        'shadow-sm': props.boxShadow == 1,
+        shadow: props.boxShadow == 2,
+        'shadow-lg': props.boxShadow == 3,
+      })
+    );
 
-    createEffect(() => computeBoxShadowClass(props.boxShadow));
-
-    return <BaseComponent {...props} class={props.class + boxShadowClass()} />;
+    return <BaseComponent {...props} classList={classList()} />;
   };
 };

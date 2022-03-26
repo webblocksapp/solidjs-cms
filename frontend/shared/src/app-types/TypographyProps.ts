@@ -9,6 +9,7 @@ export interface TypographyProps {
   letterSpacing?: Properties['letterSpacing'];
   lineHeight?: 1 | 'sm' | 'base' | 'lg';
   monospace?: boolean;
+  reset?: boolean;
   textAlign?: Properties['textAlign'];
   textDecoration?: Properties['textDecoration'];
   textOverflow?: 'wrap' | 'nowrap' | 'break';

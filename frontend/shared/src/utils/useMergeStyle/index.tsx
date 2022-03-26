@@ -14,21 +14,8 @@ export const useMergeStyle = () => {
    * @returns
    */
   const mergeStyle = (styleProp: Style = {}, styleArg: CommonObject = {}) => {
-    if (styleArg === undefined) {
-      return styleProp;
-    } else if (typeof styleProp === 'string') {
-      let inlineStyle = '';
-
-      Object.keys(styleArg).forEach((key) => {
-        if (styleArg[key] !== undefined) {
-          inlineStyle += ` ${key}: ${styleArg[key]}; `;
-        }
-      });
-
-      setStyle(`${style()} ${inlineStyle}`);
-    } else if (typeof styleProp === 'object') {
-      setStyle({ ...styleProp, ...styleArg });
-    }
+    if (typeof styleProp === 'string') return;
+    setStyle({ ...styleProp, ...styleArg });
   };
 
   return {
