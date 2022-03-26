@@ -27,6 +27,7 @@ export interface BaseFieldProps {
 export const withBaseField = <T,>(BaseComponent: Component<T>) => {
   return (props: T & BaseFieldProps) => {
     const id = createUniqueId();
+    let field: HTMLElement | undefined;
     const [message, setMessage] = createSignal<string | undefined>('');
     const [status, setStatus] = createSignal<FeedbackStatus | undefined>();
     const [feedbackClass, setFeedbackClass] = createSignal<string>('');
@@ -81,7 +82,9 @@ export const withBaseField = <T,>(BaseComponent: Component<T>) => {
 
     const initDefaultValue = () => {
       if (props.formHandler) {
-        setValue(props.value || props.formHandler.getFieldValue(props.name));
+        const value = props.value || props.formHandler.getFieldValue(props.name);
+        setValue(value);
+        props.formHandler.initFormField(props.name, value, field);
       } else {
         setValue(props.value);
       }
@@ -101,6 +104,7 @@ export const withBaseField = <T,>(BaseComponent: Component<T>) => {
     return (
       <BaseComponent
         {...props}
+        ref={field}
         value={value()}
         setValue={setValue}
         feedbackClass={feedbackClass()}

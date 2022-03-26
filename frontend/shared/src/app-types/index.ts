@@ -13,6 +13,7 @@ export * from './FeedbackStatus';
 export * from './FlexboxProps';
 export * from './FontSizeScale';
 export * from './FormFieldComponent';
+export * from './FormField';
 export * from './FormHandler';
 export * from './GridProps';
 export * from './InputChangeEvent';

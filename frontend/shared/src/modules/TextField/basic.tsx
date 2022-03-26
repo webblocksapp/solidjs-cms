@@ -34,6 +34,8 @@ export const Basic: Component = () => {
           helperText="Don't share your email"
           formHandler={formHandler}
         />
+        <hr />
+        {formHandler.formHasChanges() && 'has changes'}
       </Grid>
     </Grid>
   );
