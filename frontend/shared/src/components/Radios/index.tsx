@@ -51,13 +51,14 @@ const BaseRadios: Component<RadiosProps> = (props) => {
 
   return (
     <>
-      <Box class={`${props.class}${props.feedbackClass}`}>
+      <Box class={props.class} classList={props.feedbackClassList}>
         <For each={store.options}>
           {(item, index) => (
             <Box class="form-check">
               <Input
                 checked={item.checked}
-                class={props.feedbackClass + ' form-check-input '}
+                class={'form-check-input'}
+                classList={props.feedbackClassList}
                 id={`${props.id}-${index()}`}
                 name={props.name}
                 onChange={onChange}

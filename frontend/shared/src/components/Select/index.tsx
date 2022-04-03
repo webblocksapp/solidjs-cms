@@ -127,7 +127,7 @@ const BaseSelect: Component<SelectProps> = (props) => {
           {props.label}
         </Label>
       )}
-      <Box fullWidth class={props.feedbackClass}>
+      <Box fullWidth class={props.class} classList={props.feedbackClassList}>
         <select ref={select} id={props.id}>
           {props.multiple ? <></> : <option></option>}
           <For each={props.options}>{(item) => <option value={item.value}>{item.viewValue}</option>}</For>

@@ -33,7 +33,8 @@ const BaseTextField: Component<TextFieldProps> = (props) => {
         onInput={onInput}
         onBlur={onBlur}
         type={props.type}
-        class={' form-control ' + props.feedbackClass}
+        class={'form-control'}
+        classList={props.feedbackClassList}
         id={props.id}
         placeholder={props.placeholder}
         value={props.value}

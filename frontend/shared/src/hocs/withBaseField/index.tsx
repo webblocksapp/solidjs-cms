@@ -1,11 +1,10 @@
-import { FeedbackStatus, FormHandler } from '@app-types';
+import { ClassList, CssClassProps, FeedbackStatus, FormHandler } from '@app-types';
 import { batch, Component, createEffect, createSignal, createUniqueId, mergeProps, onMount } from 'solid-js';
 
-export interface BaseFieldProps {
-  class?: string;
+export interface BaseFieldProps extends CssClassProps {
   disabled?: boolean;
   errorMessage?: string;
-  feedbackClass?: string;
+  feedbackClassList?: ClassList;
   formHandler?: FormHandler;
   formHandlerOnInput: (value: any) => void;
   formHandlerOnChange: (value: any) => void;
@@ -30,7 +29,7 @@ export const withBaseField = <T,>(BaseComponent: Component<T>) => {
     let field: HTMLElement | undefined;
     const [message, setMessage] = createSignal<string | undefined>('');
     const [status, setStatus] = createSignal<FeedbackStatus | undefined>();
-    const [feedbackClass, setFeedbackClass] = createSignal<string>('');
+    const [feedbackClassList, setFeedbackClassList] = createSignal();
     const [value, setValue] = createSignal<any>();
     props = mergeProps({ class: '' }, props);
 
@@ -38,16 +37,15 @@ export const withBaseField = <T,>(BaseComponent: Component<T>) => {
       if (errorMessage) {
         setMessage(errorMessage);
         setStatus('invalid');
-        setFeedbackClass(' is-invalid ');
       } else if (validMessage) {
         setMessage(validMessage);
         setStatus('valid');
-        setFeedbackClass(' is-valid ');
       } else {
         setMessage('');
         setStatus();
-        setFeedbackClass('');
       }
+
+      setFeedbackClassList({ 'is-invalid': Boolean(errorMessage), valid: Boolean(validMessage) });
     };
 
     const formHandlerOnInput = (value: any) => {
@@ -107,7 +105,7 @@ export const withBaseField = <T,>(BaseComponent: Component<T>) => {
         ref={field}
         value={value()}
         setValue={setValue}
-        feedbackClass={feedbackClass()}
+        feedbackClassList={feedbackClassList()}
         formHandlerOnInput={formHandlerOnInput}
         formHandlerOnChange={formHandlerOnChange}
         formHandlerOnSelect={formHandlerOnSelect}
