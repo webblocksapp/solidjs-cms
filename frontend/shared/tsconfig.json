@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
+    "resolveJsonModule": true,
     "types": ["vite/client", "jquery", "bootstrap", "select2", "yup"],
     "paths": {
       "@app-types": ["app-types"],
