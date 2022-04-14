@@ -1,5 +1,5 @@
 import { Component, createSignal } from 'solid-js';
-import { Box, BoxProps } from '@components';
+import { Box, BoxProps, Button } from '@components';
 
 export const Basic: Component = () => {
   const [args, setArgs] = createSignal<BoxProps>({});
@@ -18,11 +18,12 @@ export const Basic: Component = () => {
   return (
     <div class="p-3">
       <Box {...args()}>
-        <Box padding={2} p={4}>
-          A
-        </Box>
+        <Box>A</Box>
         <Box>B</Box>
       </Box>
+      <Button variant="contained" color="danger">
+        Hello
+      </Button>
       <hr />
       <select name="display" onChange={(event) => handleChange(event)}>
         <option>block</option>
