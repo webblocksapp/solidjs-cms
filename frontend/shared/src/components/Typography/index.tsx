@@ -1,8 +1,8 @@
-import { TypographyComponent, TypographyProps as BaseTypographyProps, PaletteProps } from '@app-types';
+import { TypographyComponent, TypographyProps as BaseTypographyProps, PaletteProps, CssClassProps } from '@app-types';
 import { withPalette, withTypography } from '@hocs';
 import { Component } from 'solid-js';
 
-export interface TypographyProps extends BaseTypographyProps, PaletteProps {
+export interface TypographyProps extends BaseTypographyProps, PaletteProps, CssClassProps {
   class?: string;
   component?: TypographyComponent;
 }

@@ -1,4 +1,4 @@
-import { FeedbackStatus } from '@app-types';
+import { CommonObject, FeedbackStatus } from '@app-types';
 import { Typography } from '@components';
 import { Component, createEffect, createSignal, Show } from 'solid-js';
 
@@ -8,26 +8,18 @@ export interface ValidationFeedbackProps {
 }
 
 export const ValidationFeedback: Component<ValidationFeedbackProps> = (props) => {
-  const [statusClass, setStatusClass] = createSignal<string>('');
+  const [statusClassList, setStatusClassList] = createSignal<CommonObject>({});
 
-  const computeStatusClass = (value?: FeedbackStatus) => {
-    setStatusClass(() => {
-      switch (value) {
-        case 'valid':
-          return 'valid-feedback';
-        case 'invalid':
-          return 'invalid-feedback';
-        default:
-          return '';
-      }
+  createEffect(() => {
+    setStatusClassList({
+      'valid-feedback': props.status === 'valid',
+      'invalid-feedback': props.status === 'invalid',
     });
-  };
-
-  createEffect(() => computeStatusClass(props.status));
+  });
 
   return (
     <Show when={props.message} fallback={<></>}>
-      <Typography component="span" class={statusClass()}>
+      <Typography component="span" classList={statusClassList()}>
         {props.message}
       </Typography>
     </Show>
