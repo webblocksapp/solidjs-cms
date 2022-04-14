@@ -18,7 +18,9 @@ export const Basic: Component = () => {
   return (
     <div class="p-3">
       <Box {...args()}>
-        <Box>A</Box>
+        <Box padding={2} p={4}>
+          A
+        </Box>
         <Box>B</Box>
       </Box>
       <hr />

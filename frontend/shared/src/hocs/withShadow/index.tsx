@@ -1,9 +1,9 @@
 import { Component, createEffect } from 'solid-js';
-import { CssClassProps, ShadowsProps } from '@app-types';
+import { CssClassProps, ShadowProps } from '@app-types';
 import { useMergeClassList } from '@utils';
 
 export const withShadow = <T extends CssClassProps>(BaseComponent: Component<T>) => {
-  return (props: T & ShadowsProps) => {
+  return (props: T & ShadowProps) => {
     const { classList, mergeClassList } = useMergeClassList();
 
     createEffect(() =>

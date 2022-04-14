@@ -1,14 +1,13 @@
 import { Component } from 'solid-js';
 import {
-  BorderProps,
   DisplayProps,
   DivElement,
   FlexboxProps,
   GridProps,
   OverflowProps,
   PaletteProps,
-  PositionsProps,
-  ShadowsProps,
+  PositionProps,
+  ShadowProps,
   SizingProps,
   SpacingProps,
   TypographyProps,
@@ -18,6 +17,7 @@ import {
   withDisplay,
   withFlex,
   withGrid,
+  withOverflow,
   withPalette,
   withPosition,
   withShadow,
@@ -25,40 +25,26 @@ import {
   withSpacing,
   withTypography,
 } from '@hocs';
-import { Properties } from 'csstype';
-import { withOverflow } from 'hocs/withOverflow';
 
+export interface BaseBoxProps extends DivElement {}
 export interface BoxProps
-  extends BorderProps,
+  extends BaseBoxProps,
     DisplayProps,
-    DivElement,
     FlexboxProps,
     GridProps,
     OverflowProps,
     PaletteProps,
-    PositionsProps,
-    ShadowsProps,
+    PositionProps,
+    ShadowProps,
     SizingProps,
     SpacingProps,
-    TypographyProps {
-  gridTemplateColumns?: Properties['gridTemplateColumns'];
-  gridTemplateRows?: Properties['gridTemplateRows'];
-}
+    TypographyProps {}
 
-let Box: Component<BoxProps> = (props) => {
-  return <div {...props}>{props.children}</div>;
-};
-
-Box = withBorder(Box);
-Box = withDisplay(Box);
-Box = withFlex(Box);
-Box = withPalette(Box);
-Box = withPosition(Box);
-Box = withShadow(Box);
-Box = withSizing(Box);
-Box = withSpacing(Box);
-Box = withTypography(Box);
-Box = withGrid(Box);
-Box = withOverflow(Box);
-
-export { Box };
+export const BaseBox: Component<BaseBoxProps> = (props) => <div {...props}>{props.children}</div>;
+export const Box = withBorder(
+  withDisplay(
+    withFlex(
+      withGrid(withOverflow(withPalette(withPosition(withShadow(withSizing(withSpacing(withTypography(BaseBox))))))))
+    )
+  )
+);

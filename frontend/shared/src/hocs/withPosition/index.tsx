@@ -1,9 +1,9 @@
 import { Component, createEffect } from 'solid-js';
-import { CssClassProps, PositionsProps, Style } from '@app-types';
+import { CssClassProps, PositionProps, Style } from '@app-types';
 import { useMergeClassList, useMergeStyle } from '@utils';
 
 export const withPosition = <T extends CssClassProps & { style?: Style }>(BaseComponent: Component<T>) => {
-  return (props: T & PositionsProps) => {
+  return (props: T & PositionProps) => {
     const { style, mergeStyle } = useMergeStyle();
     const { classList, mergeClassList } = useMergeClassList();
 

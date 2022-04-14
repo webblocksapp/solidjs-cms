@@ -7,4 +7,5 @@ export * from './pxToRem';
 export * from './useFormHandler';
 export * from './useMergeClassList';
 export * from './useMergeStyle';
+export * from './useTranslation';
 export * from './yup';
