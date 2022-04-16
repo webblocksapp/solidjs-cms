@@ -1,7 +1,7 @@
 import { CheckboxInputEvent, FormFieldComponent, SelectableOption } from '@app-types';
 import { Box, Input, Label, ValidationFeedback } from '@components';
 import { BaseFieldProps, withBaseField } from '@hocs';
-import { Component, For, onMount, batch } from 'solid-js';
+import { For, onMount, batch } from 'solid-js';
 import { createStore } from 'solid-js/store';
 
 export interface RadiosProps extends BaseFieldProps {
@@ -9,7 +9,7 @@ export interface RadiosProps extends BaseFieldProps {
   onChange?: (event: CheckboxInputEvent) => void;
 }
 
-const BaseRadios: Component<RadiosProps> = (props) => {
+export const Radios = withBaseField((props: RadiosProps) => {
   const [store, setStore] = createStore<{ options: SelectableOption[] }>({ options: [...props.options] });
 
   const toggleCheck = (value: any) => {
@@ -75,6 +75,4 @@ const BaseRadios: Component<RadiosProps> = (props) => {
       <ValidationFeedback status={props.status} message={props.message} />
     </>
   );
-};
-
-export const Radios = withBaseField(BaseRadios) as FormFieldComponent<RadiosProps>;
+}) as FormFieldComponent<RadiosProps>;
