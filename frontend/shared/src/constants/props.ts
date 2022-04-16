@@ -41,4 +41,4 @@ export const SELECT2_OPTIONS = [
   'width',
   'createTag',
   'insertTag',
-] as unknown as (keyof SelectProps | 'children')[];
+] as (keyof SelectProps)[];

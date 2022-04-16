@@ -20,7 +20,7 @@ export interface SelectProps extends Select2Props, BaseFieldProps {
   onClose?: (event: Select2CloseEvent) => void;
 }
 
-const BaseSelect: Component<SelectProps> = (props) => {
+export const Select: Component<SelectProps> = withBaseField((props: SelectProps) => {
   let [config] = splitProps(props, SELECT2_OPTIONS);
   config = mergeProps(config, {
     placeholder: config.placeholder || '',
@@ -137,6 +137,4 @@ const BaseSelect: Component<SelectProps> = (props) => {
       <ValidationFeedback status={props.status} message={props.message} />
     </>
   );
-};
-
-export const Select = withBaseField(BaseSelect) as FormFieldComponent<SelectProps>;
+}) as FormFieldComponent<SelectProps>;
