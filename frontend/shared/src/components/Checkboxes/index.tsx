@@ -1,6 +1,6 @@
 import { CheckboxInputEvent, FormFieldComponent, SelectableOption } from '@app-types';
 import { BaseFieldProps, withBaseField } from '@hocs';
-import { Component, For, onMount } from 'solid-js';
+import { For, onMount } from 'solid-js';
 import { Box, Input, Label, ValidationFeedback } from '@components';
 import { createStore } from 'solid-js/store';
 
@@ -10,7 +10,7 @@ export interface CheckboxesProps extends BaseFieldProps {
   onChange?: (event: CheckboxInputEvent) => void;
 }
 
-export const BaseCheckboxes: Component<CheckboxesProps> = (props) => {
+export const Checkboxes = withBaseField((props: CheckboxesProps) => {
   const [store, setStore] = createStore<{ options: SelectableOption[] }>({ options: [...props.options] });
 
   const toggleCheck = (value: any) => {
@@ -86,6 +86,4 @@ export const BaseCheckboxes: Component<CheckboxesProps> = (props) => {
       <ValidationFeedback status={props.status} message={props.message} />
     </>
   );
-};
-
-export const Checkboxes = withBaseField(BaseCheckboxes) as FormFieldComponent<CheckboxesProps>;
+}) as FormFieldComponent<CheckboxesProps>;
