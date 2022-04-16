@@ -1,7 +1,7 @@
 import { render } from 'solid-js/web';
 import './index.css';
 import './libs';
-import 'i18n';
+import './i18n';
 import App from './App';
 import { Router } from 'solid-app-router';
 

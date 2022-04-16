@@ -1,16 +1,11 @@
-import i18next from 'i18next';
+import { useSolidI18next } from '@utils';
 import * as resources from './locales';
+import i18next from 'i18next';
 
-i18next.init(
-  {
-    resources,
-    fallbackLng: 'en',
-    ns: ['file1', 'file2'],
-    defaultNS: 'file1',
-    debug: true,
-  },
-  (err, t) => {
-    if (err) return console.log('something went wrong loading', err);
-    t('key');
-  }
-);
+const { initSolidI18next } = useSolidI18next();
+
+i18next.use(initSolidI18next).init({
+  resources,
+  fallbackLng: 'en',
+  debug: true,
+});

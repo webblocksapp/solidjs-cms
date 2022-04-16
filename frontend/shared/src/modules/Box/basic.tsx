@@ -1,5 +1,6 @@
 import { Component, createSignal } from 'solid-js';
 import { Box, BoxProps, Button } from '@components';
+import { useTranslation } from '@utils';
 
 export const Basic: Component = () => {
   const [args, setArgs] = createSignal<BoxProps>({});
@@ -15,6 +16,8 @@ export const Basic: Component = () => {
     setArgs({ ...args(), [name]: value ? styles[Number(value)] : {} });
   };
 
+  const { t } = useTranslation(['common', 'translation']);
+
   return (
     <div class="p-3">
       <Box {...args()}>
@@ -24,6 +27,8 @@ export const Basic: Component = () => {
       <Button variant="contained" color="danger">
         Hello
       </Button>
+      <>{t('save')}</>
+      <>{t('open')}</>
       <hr />
       <select name="display" onChange={(event) => handleChange(event)}>
         <option>block</option>
