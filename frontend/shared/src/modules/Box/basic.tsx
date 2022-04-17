@@ -1,5 +1,5 @@
 import { Component, createSignal } from 'solid-js';
-import { Box, BoxProps, Button } from '@components';
+import { Box, BoxProps, Button, useI18nContext } from '@components';
 import { useTranslation } from '@utils';
 
 export const Basic: Component = () => {
@@ -17,6 +17,12 @@ export const Basic: Component = () => {
   };
 
   const { t } = useTranslation(['common', 'translation']);
+
+  const { changeLanguage } = useI18nContext();
+
+  setTimeout(() => {
+    changeLanguage('es');
+  }, 2000);
 
   return (
     <div class="p-3">

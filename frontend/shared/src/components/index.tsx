@@ -6,6 +6,7 @@ export * from './Collapse';
 export * from './Content';
 export * from './Grid';
 export * from './HelperText';
+export * from './I18nProvider';
 export * from './Input';
 export * from './Label';
 export * from './Link';
