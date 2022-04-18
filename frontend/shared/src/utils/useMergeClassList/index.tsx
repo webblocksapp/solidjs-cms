@@ -1,4 +1,4 @@
-import { CommonObject } from 'app-types/CommonObject';
+import { CommonObject } from '@app-types';
 import { createSignal } from 'solid-js';
 
 /**
