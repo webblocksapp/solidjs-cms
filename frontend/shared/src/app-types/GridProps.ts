@@ -1,16 +1,16 @@
-import { Properties } from 'csstype';
+import { JSX } from 'solid-js';
 
 export interface GridProps {
-  gap?: Properties['gap'];
-  columnGap?: Properties['columnGap'];
-  rowGap?: Properties['rowGap'];
-  gridColumn?: Properties['gridColumn'];
-  gridRow?: Properties['gridRow'];
-  gridAutoFlow?: Properties['gridAutoFlow'];
-  gridAutoColumns?: Properties['gridAutoColumns'];
-  gridAutoRows?: Properties['gridAutoRows'];
-  gridTemplateColumns?: Properties['gridTemplateColumns'];
-  gridTemplateRows?: Properties['gridTemplateRows'];
-  gridTemplateAreas?: Properties['gridTemplateAreas'];
-  gridArea?: Properties['gridArea'];
+  gap?: JSX.CSSProperties['gap'];
+  columnGap?: JSX.CSSProperties['column-gap'];
+  rowGap?: JSX.CSSProperties['row-gap'];
+  gridColumn?: JSX.CSSProperties['grid-column'];
+  gridRow?: JSX.CSSProperties['grid-row'];
+  gridAutoFlow?: JSX.CSSProperties['grid-auto-flow'];
+  gridAutoColumns?: JSX.CSSProperties['grid-auto-columns'];
+  gridAutoRows?: JSX.CSSProperties['grid-auto-rows'];
+  gridTemplateColumns?: JSX.CSSProperties['grid-template-columns'];
+  gridTemplateRows?: JSX.CSSProperties['grid-template-rows'];
+  gridTemplateAreas?: JSX.CSSProperties['grid-template-areas'];
+  gridArea?: JSX.CSSProperties['grid-area'];
 }

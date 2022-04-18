@@ -1,3 +1,3 @@
-import { Properties } from 'csstype';
+import { JSX } from 'solid-js';
 
-export type OverflowProps = { overflow?: Properties['overflow'] };
+export type OverflowProps = { overflow?: JSX.CSSProperties['overflow'] };

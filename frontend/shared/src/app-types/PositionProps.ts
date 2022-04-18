@@ -1,9 +1,9 @@
-import { Properties } from 'csstype';
 import { PositionScale } from '@app-types';
+import { JSX } from 'solid-js';
 
 export interface PositionProps {
-  position?: Properties['position'];
-  zIndex?: Properties['zIndex'];
+  position?: JSX.CSSProperties['position'];
+  zIndex?: JSX.CSSProperties['z-index'];
   top?: PositionScale;
   right?: PositionScale;
   bottom?: PositionScale;

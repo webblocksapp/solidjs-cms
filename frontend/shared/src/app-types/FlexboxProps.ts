@@ -1,13 +1,13 @@
-import { Properties } from 'csstype';
+import { JSX } from 'solid-js';
 
 export interface FlexboxProps {
-  flexDirection?: Properties['flexDirection'];
-  flexWrap?: Properties['flexWrap'];
-  justifyContent?: Properties['justifyContent'];
-  alignItems?: Properties['alignItems'];
-  alignContent?: Properties['alignContent'];
-  order?: Properties['order'];
-  flexGrow?: Properties['flexGrow'];
-  flexShrink?: Properties['flexShrink'];
-  alignSelf?: Properties['alignSelf'];
+  flexDirection?: JSX.CSSProperties['flex-direction'];
+  flexWrap?: JSX.CSSProperties['flex-wrap'];
+  justifyContent?: JSX.CSSProperties['justify-content'];
+  alignItems?: JSX.CSSProperties['align-items'];
+  alignContent?: JSX.CSSProperties['align-content'];
+  order?: JSX.CSSProperties['order'];
+  flexGrow?: JSX.CSSProperties['flex-grow'];
+  flexShrink?: JSX.CSSProperties['flex-shrink'];
+  alignSelf?: JSX.CSSProperties['align-self'];
 }

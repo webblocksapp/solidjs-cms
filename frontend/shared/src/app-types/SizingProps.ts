@@ -1,12 +1,13 @@
-import { Properties } from 'csstype';
+import { JSX } from 'solid-js';
+
 export interface SizingProps {
-  width?: Properties['width'] | number;
-  maxWidth?: Properties['maxWidth'];
-  minWidth?: Properties['minWidth'];
-  height?: Properties['height'];
-  maxHeight?: Properties['maxHeight'];
-  minHeight?: Properties['minHeight'];
-  boxSizing?: Properties['boxSizing'];
+  width?: JSX.CSSProperties['width'] | number;
+  maxWidth?: JSX.CSSProperties['max-width'];
+  minWidth?: JSX.CSSProperties['min-width'];
+  height?: JSX.CSSProperties['height'];
+  maxHeight?: JSX.CSSProperties['max-height'];
+  minHeight?: JSX.CSSProperties['min-height'];
+  boxSizing?: JSX.CSSProperties['box-sizing'];
   fullWidth?: boolean;
   fullHeight?: boolean;
 }

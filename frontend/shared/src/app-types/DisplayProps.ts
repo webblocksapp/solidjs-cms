@@ -1,5 +1,5 @@
-import { Properties } from 'csstype';
+import { JSX } from 'solid-js';
 
 export type DisplayProps = {
-  display?: Properties['display'];
+  display?: JSX.CSSProperties['display'];
 };

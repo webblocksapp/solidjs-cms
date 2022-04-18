@@ -1,17 +1,17 @@
-import { Properties } from 'csstype';
+import { JSX } from 'solid-js';
 import { FontSizeScale } from '@app-types';
 
 export interface TypographyProps {
-  fontFamily?: Properties['fontFamily'];
+  fontFamily?: JSX.CSSProperties['font-family'];
   fontSize?: FontSizeScale;
-  fontStyle?: Properties['fontStyle'];
-  fontWeight?: Properties['fontWeight'];
-  letterSpacing?: Properties['letterSpacing'];
+  fontStyle?: JSX.CSSProperties['font-style'];
+  fontWeight?: JSX.CSSProperties['font-weight'];
+  letterSpacing?: JSX.CSSProperties['letter-spacing'];
   lineHeight?: 1 | 'sm' | 'base' | 'lg';
   monospace?: boolean;
   reset?: boolean;
-  textAlign?: Properties['textAlign'];
-  textDecoration?: Properties['textDecoration'];
+  textAlign?: JSX.CSSProperties['text-align'];
+  textDecoration?: JSX.CSSProperties['text-decoration'];
   textOverflow?: 'wrap' | 'nowrap' | 'break';
-  textTransform?: Properties['textTransform'];
+  textTransform?: JSX.CSSProperties['text-transform'];
 }
