@@ -5,7 +5,7 @@ export interface TypographyProps {
   fontFamily?: JSX.CSSProperties['font-family'];
   fontSize?: FontSizeScale;
   fontStyle?: JSX.CSSProperties['font-style'];
-  fontWeight?: JSX.CSSProperties['font-weight'];
+  fontWeight?: JSX.CSSProperties['font-weight'] | 'light';
   letterSpacing?: JSX.CSSProperties['letter-spacing'];
   lineHeight?: 1 | 'sm' | 'base' | 'lg';
   monospace?: boolean;

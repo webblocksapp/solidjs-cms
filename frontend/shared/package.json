@@ -13,12 +13,12 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.17.9",
-    "@babel/preset-flow": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
     "@storybook/addon-actions": "^6.4.22",
     "@storybook/addon-essentials": "^6.4.22",
     "@storybook/addon-links": "^6.4.22",
     "@storybook/html": "^6.4.22",
+    "@types/babel__core": "^7.1.19",
     "@types/bootstrap": "^5.1.9",
     "@types/jquery": "^3.5.13",
     "@types/select2": "^4.0.55",

@@ -9,7 +9,7 @@ let Link: Component<LinkProps> = (props) => {
   return <NavLink {...props} class={props.class + ` nav-link `} />;
 };
 
-Link = withTypography(Link, { textDecoration: 'none' });
+Link = withTypography(Link);
 Link = withPalette(Link);
 
 export { Link };

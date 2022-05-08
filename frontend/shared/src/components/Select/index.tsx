@@ -20,7 +20,7 @@ export interface SelectProps extends Select2Props, BaseFieldProps {
   onClose?: (event: Select2CloseEvent) => void;
 }
 
-export const Select: Component<SelectProps> = withBaseField((props: SelectProps) => {
+export const Select = withBaseField((props: SelectProps) => {
   let [config] = splitProps(props, SELECT2_OPTIONS);
   config = mergeProps(config, {
     placeholder: config.placeholder || '',

@@ -17,6 +17,7 @@ export * from './Radios';
 export * from './Select';
 export * from './Sidebar';
 export * from './TextField';
+export * from './ThemeProvider';
 export * from './TreeMenu';
 export * from './Typography';
 export * from './ValidationFeedback';
